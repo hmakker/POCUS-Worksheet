@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>POCUS Worksheet</title>
+<style>
+  :root {
+    --border: #222;
+    --light: #f2f2f2;
+  }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 12px;
+    background: #ffffff;
+    color: #000;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+  }
+
+  .top-row {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .field input[type="text"] {
+    flex: 1;
+    border: 1px solid var(--border);
+    height: 28px;
+    font-size: 15px;
+    padding: 2px 5px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    padding: 5px 8px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+
+  .quality {
+    font-weight: normal;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+  }
+
+  td {
+    border: 1px solid var(--border);
+    padding: 4px 6px;
+    vertical-align: middle;
+  }
+
+  td.label {
+    width: 27%;
+    font-weight: 600;
+  }
+
+  td.options {
+    width: 73%;
+  }
+
+  label.option {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    white-space: nowrap;
+    gap: 5px;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    accent-color: #111;
+  }
+
+  .airway-grid {
+    border: 1px solid var(--border);
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 7px 14px;
+    font-size: 13px;
+  }
+
+  .airway-grid label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    border-bottom: 1px dotted #aaa;
+    padding-bottom: 2px;
+  }
+
+  .impression {
+    margin-top: 8px;
+  }
+
+  .impression-title {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 88px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    padding: 6px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .small-input {
+    width: 72px;
+    height: 26px;
+    font-size: 14px;
+    padding: 2px 4px;
+    border: 1px solid var(--border);
+  }
+
+  .calc-result {
+    display: inline-block;
+    min-width: 90px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-weight: bold;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #222;
+    background: #f5f5f5;
+    border-radius: 6px;
+  }
+
+  @media print {
+    body { padding: 0.25in; }
+    .page { max-width: none; }
+    .buttons { display: none; }
+    input[type="checkbox"] { width: 14px; height: 14px; }
+    td { padding: 3px 5px; }
+    .section-header { margin-top: 5px; padding: 4px 7px; }
+    textarea { height: 72px; }
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 8px; }
+    h1 { font-size: 22px; }
+    .top-row {
+      grid-template-columns: 1fr;
+    }
+    table { font-size: 12px; }
+    td.label { width: 34%; }
+    td.options { width: 66%; }
+    label.option {
+      margin-right: 10px;
+      margin-bottom: 4px;
+    }
+    .airway-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+  <h1>POCUS Worksheet</h1>
+
+  <div class="top-row">
+    <div class="field"><span>Your Name:</span><input type="text" /></div>
+    <div class="field"><span>Date:</span><input type="text" /></div>
+    <div class="field"><span>Accession #:</span><input type="text" /></div>
+  </div>
+
+  <div class="section-header">
+    <span>CARDIAC</span>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> PLAX</label>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> PSAX</label>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> A4C</label>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> SubX</label>
+  </div>
+  <table>
+    
+<tr>
+  <td class="label">LV</td>
+  <td class="options" style="white-space: nowrap;">
+    <label class="option"><input type="checkbox" /> Normal</label>
+    <label class="option"><input type="checkbox" data-finding="LV dilated" /> Dilated</label>
+    <label class="option"><input type="checkbox" data-finding="LV depressed function" /> Depressed</label>
+  </td>
+</tr>
+
+    
+<tr>
+  <td class="label">RV</td>
+  <td class="options" style="white-space: nowrap;">
+    <label class="option"><input type="checkbox" /> Normal</label>
+    <label class="option"><input type="checkbox" data-finding="RV dilated" /> Dilated</label>
+    <label class="option"><input type="checkbox" data-finding="RV depressed function" /> Depressed</label>
+  </td>
+</tr>
+
+    <tr>
+<td class="label">LA / RA</td>
+<td class="options" style="white-space: nowrap;">
+<label class="option"><input type="checkbox" data-finding="LA dilated" /> LA Dilated</label>
+<label class="option"><input type="checkbox" data-finding="RA dilated" /> RA Dilated</label>
+</td>
+</tr>
+    <tr>
+      <td class="label">Pericardial Effusion</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> None</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="small pericardial effusion" /> Small</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="moderate pericardial effusion" /> Moderate</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="large pericardial effusion" /> Large</label>
+      </td>
+    </tr>
+    <tr>
+<td class="label">IVC Size</td>
+<td class="options">
+<label class="option"><input type="checkbox" /> &lt; 2 cm</label>
+<label class="option"><input type="checkbox" data-finding="IVC greater than 2 cm" /> &gt; 2 cm</label>
+</td>
+</tr>
+<tr>
+<td class="label">IVC Collapsibility</td>
+<td class="options">
+<label class="option"><input type="checkbox" /> Collapsible</label>
+<label class="option"><input type="checkbox" data-finding="IVC not collapsible" /> Not Collapsible</label>
+</td>
+</tr>
+    <tr>
+      <td class="label">MV Function</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Adequate</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral valve gross function not adequate" /> Not Adequate</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">MV Stenosis</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral stenosis" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">MV Regurgitation</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral regurgitation" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">AV Function</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Adequate</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="aortic valve gross function not adequate" /> Not Adequate</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">AV Stenosis</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="aortic stenosis" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">AV Regurgitation</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="aortic regurgitation" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Aortic Pathology</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-finding="aortic pathology present" /> Present</label>
+        <label class="option"><input type="checkbox" /> Absent</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Aortic Pathology</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-finding="aortic pathology present" /> Present</label>
+        <label class="option"><input type="checkbox" /> Absent</label>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="label">TV Function</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Adequate</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="tricuspid valve gross function not adequate" /> Not Adequate</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">TV Stenosis</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="tricuspid stenosis" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">TV Regurgitation</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="tricuspid regurgitation" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+  </table>
+
+  <div class="section-header">
+    <span>LUNG</span>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Anterior</label>
+    <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Lateral</label>
+  </div>
+  <table>
+    <tr>
+      <td class="label">Lung Sliding</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Bilateral</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent right lung sliding" /> Absent Right</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent left lung sliding" /> Absent Left</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Pneumothorax</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> None</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="suspected pneumothorax" /> Suspected</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="lung point identified" /> Lung Point Identified</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">A-lines</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Present</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="A-lines absent" /> Absent</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">B-lines</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> None</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="focal B-lines" /> Focal</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="diffuse B-lines" /> Diffuse</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Consolidation</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right lung consolidation" /> Right</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left lung consolidation" /> Left</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Pleural Effusion</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Absent</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="pleural effusion present" /> Present</label>
+      </td>
+    </tr>
+  </table>
+
+  <div class="section-header">
+    <span>FAST</span>
+  </div>
+  <table>
+    <tr>
+      <td class="label">RUQ Free Fluid <label class="option"><input type="checkbox" /> Adequate Image</label></td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Absent</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="RUQ free fluid present" /> Present</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">LUQ Free Fluid <label class="option"><input type="checkbox" /> Adequate Image</label></td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Absent</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="LUQ free fluid present" /> Present</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Pelvis Free Fluid <label class="option"><input type="checkbox" /> Adequate Image</label></td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Absent</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="pelvic free fluid present" /> Present</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Cardiac Effusion <label class="option"><input type="checkbox" /> Adequate Image</label></td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Absent</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="cardiac effusion present on FAST" /> Present</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">FAST Overall </td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> Negative</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="FAST positive" /> Positive</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="FAST indeterminate" /> Indeterminate</label>
+      </td>
+    </tr>
+  </table>
+
+  
+  <div class="section-header">
+    <span>GASTRIC</span>
+    <label class="quality"><input type="checkbox" /> Supine</label>
+    <label class="quality"><input type="checkbox" /> RLD</label>
+  </div>
+  <table>
+    <tr>
+      <td class="label">Gastric Content</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" /> Empty</label>
+        <label class="option"><input type="checkbox" data-finding="clear fluid in stomach" /> Clear Fluid</label>
+        <label class="option"><input type="checkbox" id="solidGastricContent" data-finding="solid contents in stomach" /> Solid</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Gastric Inputs</td>
+      <td class="options">
+        <label class="option">Age <input class="small-input" id="gastricAge" type="number" inputmode="decimal" oninput="calculateGastric()" /></label>
+        <label class="option">kg <input class="small-input" id="gastricKg" type="number" inputmode="decimal" oninput="calculateGastric()" /></label>
+        <label class="option">RLD CSA <input class="small-input" id="gastricCSA" type="number" inputmode="decimal" step="0.1" oninput="calculateGastric()" /></label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Calculated Gastric Volume</td>
+      <td class="options">
+        <span id="gastricVolume" class="calc-result">-- mL</span>
+        <span id="gastricVolumeKg" class="calc-result">-- mL/kg</span>
+        <span id="gastricRisk" class="calc-result">Risk: --</span>
+      </td>
+    </tr>
+  </table>
+
+<div class="section-header">
+    <span>AIRWAY</span>
+  </div>
+  <div class="airway-grid">
+    <label>Trachea <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Tracheal rings <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Cricoid cartilage <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Cricothyroid membrane <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Thyroid cartilage <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Vocal cords <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Hyoid bone <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Epiglottis <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Tongue <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Esophagus <input type="checkbox" onchange="updateImpression()" /></label>
+  </div>
+
+  <div class="impression">
+    <div class="impression-title">Overall Impression:</div>
+    <textarea id="impression"></textarea>
+  </div>
+
+  <div class="buttons">
+    <button type="button" onclick="updateImpression()">Update Impression</button>
+    <button type="button" onclick="copyImpression()">Copy Impression</button>
+    <button type="button" onclick="window.print()">Print / Save PDF</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </div>
+</div>
+
+<script>
+  function updateImpression() {
+    var impression = document.getElementById("impression");
+    var findings = [];
+    var boxes = document.querySelectorAll("input[data-finding]");
+
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].checked) {
+        findings.push(boxes[i].getAttribute("data-finding"));
+      }
+    }
+
+    var riskEl = document.getElementById("gastricRisk");
+    if (riskEl && riskEl.getAttribute("data-risk") === "high") {
+      findings.push("high aspiration risk");
+    }
+
+    if (findings.length > 0) {
+      impression.value = "Positive findings: " + findings.join("; ") + ".";
+    } else {
+      impression.value = "";
+    }
+  }
+
+  function calculateGastric() {
+    var age = parseFloat(document.getElementById("gastricAge").value);
+    var kg = parseFloat(document.getElementById("gastricKg").value);
+    var csa = parseFloat(document.getElementById("gastricCSA").value);
+
+    var volumeEl = document.getElementById("gastricVolume");
+    var volumeKgEl = document.getElementById("gastricVolumeKg");
+    var riskEl = document.getElementById("gastricRisk");
+    var solidEl = document.getElementById("solidGastricContent");
+    var solidChecked = solidEl && solidEl.checked;
+
+    if (isNaN(age) || isNaN(kg) || isNaN(csa) || kg <= 0) {
+      volumeEl.textContent = "-- mL";
+      volumeKgEl.textContent = "-- mL/kg";
+
+      if (solidChecked) {
+        riskEl.textContent = "Risk: High";
+        riskEl.setAttribute("data-risk", "high");
+      } else {
+        riskEl.textContent = "Risk: --";
+        riskEl.removeAttribute("data-risk");
+      }
+
+      updateImpression();
+      return;
+    }
+
+    var volume = 27.0 + (14.6 * csa) - (1.28 * age);
+    if (volume < 0) volume = 0;
+
+    var mlkg = volume / kg;
+
+    volumeEl.textContent = volume.toFixed(1) + " mL";
+    volumeKgEl.textContent = mlkg.toFixed(2) + " mL/kg";
+
+    if (solidChecked || mlkg > 1.5) {
+      riskEl.textContent = "Risk: High";
+      riskEl.setAttribute("data-risk", "high");
+    } else {
+      riskEl.textContent = "Risk: Low";
+      riskEl.setAttribute("data-risk", "low");
+    }
+
+    updateImpression();
+  }
+
+  function copyImpression() {
+    updateImpression();
+    var impression = document.getElementById("impression");
+    impression.focus();
+    impression.select();
+
+    try {
+      navigator.clipboard.writeText(impression.value);
+    } catch (e) {
+      document.execCommand("copy");
+    }
+  }
+
+  function clearForm() {
+    var inputs = document.querySelectorAll("input");
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].type === "checkbox") {
+        inputs[i].checked = false;
+      } else {
+        inputs[i].value = "";
+      }
+    }
+    document.getElementById("impression").value = "";
+    if (document.getElementById("gastricVolume")) {
+      document.getElementById("gastricVolume").textContent = "-- mL";
+      document.getElementById("gastricVolumeKg").textContent = "-- mL/kg";
+      document.getElementById("gastricRisk").textContent = "Risk: --";
+      document.getElementById("gastricRisk").removeAttribute("data-risk");
+    }
+  }
+
+  window.onload = function() {
+    var boxes = document.querySelectorAll("input[type='checkbox']");
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].addEventListener("change", function() { updateImpression(); calculateGastric(); });
+      boxes[i].addEventListener("click", function() { updateImpression(); calculateGastric(); });
+    }
+    calculateGastric();
+    updateImpression();
+  };
+</script>
+
+</body>
+</html>
