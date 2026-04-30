@@ -79,12 +79,20 @@
   
 .quality-row {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 4px 0 8px 0;
+  flex-wrap: nowrap;
+  gap: 18px;
+  padding: 8px 8px;
+  margin: 0 0 8px 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--light);
+}
+
+  .quality-row .quality {
+  font-size: 18px;
 }
   
   table {
