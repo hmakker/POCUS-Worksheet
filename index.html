@@ -262,12 +262,16 @@
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="large pericardial effusion" /> Large</label>
       </td>
     </tr>
-    <tr>
-<td class="label">IVC Size</td>
-<td class="options">
-<label class="option"><input type="checkbox" /> &lt; 2 cm</label>
-<label class="option"><input type="checkbox" data-finding="IVC greater than 2 cm" /> &gt; 2 cm</label>
-</td>
+<tr>
+  <td class="label">IVC Size</td>
+  <td class="options">
+    <label class="option">
+      <input type="checkbox" data-ivc-size="small" onchange="calculateRAP()" /> &lt; 2.1 cm
+    </label>
+    <label class="option">
+      <input type="checkbox" data-ivc-size="large" onchange="calculateRAP()" data-finding="IVC greater than 2.1 cm" /> &gt; 2.1 cm
+    </label>
+  </td>
 </tr>
 <tr>
 <td class="label">IVC Collapsibility</td>
