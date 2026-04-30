@@ -317,35 +317,7 @@
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="large pericardial effusion" /> Large</label>
       </td>
     </tr>
-<tr>
-  <td class="label">IVC Size</td>
-  <td class="options">
-    <label class="option">
-      <input type="checkbox" data-ivc-size="small" onchange="calculateRAP()" /> &lt; 2.1 cm
-    </label>
-    <label class="option">
-      <input type="checkbox" data-ivc-size="large" onchange="calculateRAP()" data-finding="IVC greater than 2.1 cm" /> &gt; 2.1 cm
-    </label>
-  </td>
-</tr>
-<tr>
-  <td class="label">IVC Collapsibility</td>
-  <td class="options">
-    <label class="option">
-      <input type="checkbox" data-ivc-collapse="high" onchange="calculateRAP()" /> &gt; 50%
-    </label>
-    <label class="option">
-      <input type="checkbox" data-ivc-collapse="low" onchange="calculateRAP()" data-finding="IVC collapsibility less than 50%" /> &lt; 50%
-    </label>
-  </td>
-</tr>
-    <tr>
-  <td class="label">Estimated RAP</td>
-  <td class="options">
-    <span id="estimatedRAP" class="calc-result">RAP: --</span>
-  </td>
-</tr>
-   
+
     <tr>
       <td class="label">MV Function</td>
 <td class="options">
@@ -445,6 +417,35 @@
         <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
       </td>
     </tr>
+  <tr>
+  <td class="label">IVC Size</td>
+  <td class="options">
+    <label class="option">
+      <input type="checkbox" data-ivc-size="small" onchange="calculateRAP()" /> &lt; 2.1 cm
+    </label>
+    <label class="option">
+      <input type="checkbox" data-ivc-size="large" onchange="calculateRAP()" data-finding="IVC greater than 2.1 cm" /> &gt; 2.1 cm
+    </label>
+  </td>
+</tr>
+<tr>
+  <td class="label">IVC Collapsibility</td>
+  <td class="options">
+    <label class="option">
+      <input type="checkbox" data-ivc-collapse="high" onchange="calculateRAP()" /> &gt; 50%
+    </label>
+    <label class="option">
+      <input type="checkbox" data-ivc-collapse="low" onchange="calculateRAP()" data-finding="IVC collapsibility less than 50%" /> &lt; 50%
+    </label>
+  </td>
+</tr>
+    <tr>
+  <td class="label">Estimated RAP</td>
+  <td class="options">
+    <span id="estimatedRAP" class="calc-result">RAP: --</span>
+  </td>
+</tr>
+   
   </table>
 
   <div class="section-header">
