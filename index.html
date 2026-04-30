@@ -272,9 +272,27 @@
 <tr>
 <td class="label">IVC Collapsibility</td>
 <td class="options">
-<label class="option"><input type="checkbox" /> Collapsible</label>
-<label class="option"><input type="checkbox" data-finding="IVC not collapsible" /> Not Collapsible</label>
+  <label class="option">
+    <input type="checkbox" /> &gt; 50%
+  </label>
+  <label class="option">
+    <input type="checkbox" onchange="updateImpression()" data-finding="IVC collapsibility less than 50%" /> &lt; 50%
+  </label>
 </td>
+</tr>
+    <tr>
+  <td class="label">Estimated RAP</td>
+  <td class="options">
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-finding="estimated right atrial pressure 3 mmHg" /> 3 mmHg
+    </label>
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-finding="estimated right atrial pressure 8 mmHg" /> 8 mmHg
+    </label>
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-finding="estimated right atrial pressure 15 mmHg" /> 15 mmHg
+    </label>
+  </td>
 </tr>
     <tr>
       <td class="label">MV Function</td>
