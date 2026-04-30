@@ -317,36 +317,7 @@
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="large pericardial effusion" /> Large</label>
       </td>
     </tr>
-
-    <tr>
-      <td class="label">MV Function</td>
-<td class="options">
-  <label class="option">
-    <input type="checkbox" onchange="updateImpression()" /> Adequate
-  </label>
-  <label class="option">
-    <input type="checkbox" onchange="updateImpression()" data-finding="mitral valve gross function not adequate" /> Not Adequate
-  </label>
-  <label class="option">
-    <input type="checkbox" onchange="updateImpression()" data-finding="mitral valve not well visualized" /> Not Visualized
-  </label>
-</td>
-    </tr>
-    <tr>
-      <td class="label">MV Stenosis</td>
-      <td class="options">
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral stenosis" /> Yes</label>
-        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
-      </td>
-    </tr>
-    <tr>
-      <td class="label">MV Regurgitation</td>
-      <td class="options">
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral regurgitation" /> Yes</label>
-        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
-      </td>
-    </tr>
-    <tr>
+ <tr>
       <td class="label">AV Function</td>
 <td class="options">
   <label class="option">
@@ -377,11 +348,38 @@
     <tr>
   <td class="label">Aortic Pathology</td>
   <td class="options">
-    <label class="option"><input type="checkbox" data-finding="aortic pathology present" /> Present</label>
-    <label class="option"><input type="checkbox" /> Absent</label>
-    <input type="text" id="aorticPathologyDetails" class="small-input" placeholder="Details" />
+    <input type="text" id="aorticPathologyDetails" class="small-input" placeholder="Details" oninput="updateImpression()" />
   </td>
 </tr>
+    <tr>
+      <td class="label">MV Function</td>
+<td class="options">
+  <label class="option">
+    <input type="checkbox" onchange="updateImpression()" /> Adequate
+  </label>
+  <label class="option">
+    <input type="checkbox" onchange="updateImpression()" data-finding="mitral valve gross function not adequate" /> Not Adequate
+  </label>
+  <label class="option">
+    <input type="checkbox" onchange="updateImpression()" data-finding="mitral valve not well visualized" /> Not Visualized
+  </label>
+</td>
+    </tr>
+    <tr>
+      <td class="label">MV Stenosis</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral stenosis" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">MV Regurgitation</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="mitral regurgitation" /> Yes</label>
+        <label class="option"><input type="checkbox" onchange="updateImpression()" /> No</label>
+      </td>
+    </tr>
+   
     
 
     <tr>
