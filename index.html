@@ -617,7 +617,7 @@
   };
 
   var currentSection = "";
-  var boxes = document.querySelectorAll("input[data-finding]");
+  var boxes = document.querySelectorAll("input[data-finding], input[data-normal]");
 
   for (var i = 0; i < boxes.length; i++) {
     if (boxes[i].checked) {
@@ -637,7 +637,7 @@
       }
 
       if (sectionName.indexOf("cardiac") !== -1) {
-        sections.cardiac.push(boxes[i].getAttribute("data-finding"));
+        sections.cardiac.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       } else if (sectionName.indexOf("lung") !== -1) {
         sections.lung.push(boxes[i].getAttribute("data-finding"));
       } else if (sectionName.indexOf("fast") !== -1) {
