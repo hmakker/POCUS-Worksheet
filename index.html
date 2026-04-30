@@ -555,7 +555,10 @@
     var impression = document.getElementById("impression");
     var findings = [];
     var boxes = document.querySelectorAll("input[data-finding]");
-
+var rapEl = document.getElementById("estimatedRAP");
+if (rapEl && rapEl.getAttribute("data-finding")) {
+  findings.push(rapEl.getAttribute("data-finding"));
+}
     for (var i = 0; i < boxes.length; i++) {
       if (boxes[i].checked) {
         findings.push(boxes[i].getAttribute("data-finding"));
