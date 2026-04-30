@@ -190,23 +190,49 @@
     textarea { height: 72px; }
   }
 
-  @media (max-width: 600px) {
-    body { padding: 8px; }
-    h1 { font-size: 22px; }
-    .top-row {
-      grid-template-columns: 1fr;
-    }
-    table { font-size: 12px; }
-    td.label { width: 34%; }
-    td.options { width: 66%; }
-    label.option {
-      margin-right: 10px;
-      margin-bottom: 4px;
-    }
-    .airway-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+ @media (max-width: 600px) {
+  body { padding: 8px; }
+  h1 { font-size: 22px; }
+
+  .top-row {
+    grid-template-columns: 1fr;
   }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  td.label {
+    background: #f7f7f7;
+    font-weight: bold;
+  }
+
+  td.options {
+    white-space: normal !important;
+  }
+
+  label.option {
+    display: inline-flex;
+    white-space: normal !important;
+    margin-right: 12px;
+    margin-bottom: 6px;
+  }
+
+  .airway-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 </style>
 </head>
 
