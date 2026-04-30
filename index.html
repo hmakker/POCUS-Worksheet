@@ -673,6 +673,24 @@
     calculateGastric();
     updateImpression();
   };
+  function calculateRAP() {
+  var ivcLarge = document.querySelector('input[data-ivc-size="large"]');
+  var collapseHigh = document.querySelector('input[data-ivc-collapse="high"]');
+  var collapseLow = document.querySelector('input[data-ivc-collapse="low"]');
+  var rapEl = document.getElementById("estimatedRAP");
+
+  if (!ivcLarge || !collapseHigh || !collapseLow || !rapEl) return;
+
+  if (ivcLarge.checked && collapseLow.checked) {
+    rapEl.textContent = "RAP: 15 mmHg";
+  } else if (ivcLarge.checked && collapseHigh.checked) {
+    rapEl.textContent = "RAP: 8 mmHg";
+  } else if (!ivcLarge.checked && collapseHigh.checked) {
+    rapEl.textContent = "RAP: 3 mmHg";
+  } else {
+    rapEl.textContent = "RAP: --";
+  }
+}
 </script>
 
 </body>
