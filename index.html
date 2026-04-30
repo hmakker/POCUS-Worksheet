@@ -431,6 +431,12 @@
       </td>
     </tr>
   <tr>
+  <td class="label">TAPSE (mm)</td>
+  <td class="options">
+    <input type="number" id="tapseValue" class="small-input" step="1" placeholder="e.g. 21" oninput="updateImpression()" />
+  </td>
+</tr>
+  <tr>
   <td class="label">IVC Size</td>
   <td class="options">
     <label class="option">
@@ -686,7 +692,19 @@
   if (aorticDetails && aorticDetails.value.trim() !== "") {
     sections.cardiac.push("aortic pathology: " + aorticDetails.value.trim());
   }
+    
+var tapse = document.getElementById("tapseValue");
+if (tapse && tapse.value !== "") {
+  var val = parseFloat(tapse.value);
 
+  if (!isNaN(val)) {
+    if (val < 17) {
+      sections.cardiac.push("TAPSE " + val + " mm (reduced RV systolic function)");
+    } else {
+      sections.cardiac.push("TAPSE " + val + " mm");
+    }
+  }
+}
   var riskEl = document.getElementById("gastricRisk");
   if (riskEl && riskEl.getAttribute("data-risk") === "high") {
     sections.gastric.push("high aspiration risk");
