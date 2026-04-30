@@ -606,34 +606,89 @@
 
 <script>
   function updateImpression() {
-    var impression = document.getElementById("impression");
-    var findings = [];
-    var boxes = document.querySelectorAll("input[data-finding]");
-    var aorticDetails = document.getElementById("aorticPathologyDetails");
-if (aorticDetails && aorticDetails.value.trim() !== "") {
-  findings.push("aortic pathology: " + aorticDetails.value.trim());
-}
-var rapEl = document.getElementById("estimatedRAP");
-if (rapEl && rapEl.getAttribute("data-finding")) {
-  findings.push(rapEl.getAttribute("data-finding"));
-}
-    for (var i = 0; i < boxes.length; i++) {
-      if (boxes[i].checked) {
-        findings.push(boxes[i].getAttribute("data-finding"));
+  var impression = document.getElementById("impression");
+
+  var sections = {
+    cardiac: [],
+    lung: [],
+    fast: [],
+    gastric: [],
+    airway: []
+  };
+
+  var currentSection = "";
+  var boxes = document.querySelectorAll("input[data-finding]");
+
+  for (var i = 0; i < boxes.length; i++) {
+    if (boxes[i].checked) {
+      var sectionHeader = boxes[i].closest("table, .airway-grid");
+      var sectionName = "";
+
+      if (sectionHeader) {
+        var previous = sectionHeader.previousElementSibling;
+
+        while (previous) {
+          if (previous.classList && previous.classList.contains("section-header")) {
+            sectionName = previous.innerText.trim().toLowerCase();
+            break;
+          }
+          previous = previous.previousElementSibling;
+        }
+      }
+
+      if (sectionName.indexOf("cardiac") !== -1) {
+        sections.cardiac.push(boxes[i].getAttribute("data-finding"));
+      } else if (sectionName.indexOf("lung") !== -1) {
+        sections.lung.push(boxes[i].getAttribute("data-finding"));
+      } else if (sectionName.indexOf("fast") !== -1) {
+        sections.fast.push(boxes[i].getAttribute("data-finding"));
+      } else if (sectionName.indexOf("gastric") !== -1) {
+        sections.gastric.push(boxes[i].getAttribute("data-finding"));
+      } else if (sectionName.indexOf("airway") !== -1) {
+        sections.airway.push(boxes[i].getAttribute("data-finding"));
       }
     }
-
-    var riskEl = document.getElementById("gastricRisk");
-    if (riskEl && riskEl.getAttribute("data-risk") === "high") {
-      findings.push("high aspiration risk");
-    }
-
-    if (findings.length > 0) {
-      impression.value = "Positive findings: " + findings.join("; ") + ".";
-    } else {
-      impression.value = "";
-    }
   }
+
+  var rapEl = document.getElementById("estimatedRAP");
+  if (rapEl && rapEl.getAttribute("data-finding")) {
+    sections.cardiac.push(rapEl.getAttribute("data-finding"));
+  }
+
+  var aorticDetails = document.getElementById("aorticPathologyDetails");
+  if (aorticDetails && aorticDetails.value.trim() !== "") {
+    sections.cardiac.push("aortic pathology: " + aorticDetails.value.trim());
+  }
+
+  var riskEl = document.getElementById("gastricRisk");
+  if (riskEl && riskEl.getAttribute("data-risk") === "high") {
+    sections.gastric.push("high aspiration risk");
+  }
+
+  var output = [];
+
+  if (sections.cardiac.length > 0) {
+    output.push("Cardiac: " + sections.cardiac.join("; ") + ".");
+  }
+
+  if (sections.lung.length > 0) {
+    output.push("Lung: " + sections.lung.join("; ") + ".");
+  }
+
+  if (sections.fast.length > 0) {
+    output.push("FAST: " + sections.fast.join("; ") + ".");
+  }
+
+  if (sections.gastric.length > 0) {
+    output.push("Gastric: " + sections.gastric.join("; ") + ".");
+  }
+
+  if (sections.airway.length > 0) {
+    output.push("Airway: " + sections.airway.join("; ") + ".");
+  }
+
+  impression.value = output.join("\n");
+}
 
   function calculateGastric() {
     var age = parseFloat(document.getElementById("gastricAge").value);
