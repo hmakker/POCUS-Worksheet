@@ -128,11 +128,12 @@
 }
 
   input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    accent-color: #111;
-  }
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  accent-color: #111;
+  flex-shrink: 0;
+}
 
   .airway-grid {
     border: 1px solid var(--border);
@@ -246,11 +247,14 @@
   }
 
   label.option {
-    display: inline-flex;
-    white-space: normal !important;
-    margin-right: 12px;
-    margin-bottom: 6px;
-  }
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  gap: 5px;
+}
 
   .airway-grid {
     grid-template-columns: 1fr 1fr;
