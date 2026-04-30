@@ -295,7 +295,7 @@
 <tr>
   <td class="label">RV</td>
   <td class="options">
-    <label class="option"><input type="checkbox" /> Normal</label>
+    <label class="option"><input type="checkbox" data-normal="RV normal" /> Normal</label>
     <label class="option"><input type="checkbox" data-finding="RV dilated" /> Dilated</label>
     <label class="option"><input type="checkbox" data-finding="RV depressed function" /> Depressed</label>
   </td>
@@ -311,7 +311,8 @@
     <tr>
       <td class="label">Pericardial Effusion</td>
       <td class="options">
-        <label class="option"><input type="checkbox" onchange="updateImpression()" /> None</label>
+        <label class="option">
+  <input type="checkbox" onchange="updateImpression()" data-normal="no pericardial effusion" /> None</label>
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="small pericardial effusion" /> Small</label>
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="moderate pericardial effusion" /> Moderate</label>
         <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="large pericardial effusion" /> Large</label>
