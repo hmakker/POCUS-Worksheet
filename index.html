@@ -640,11 +640,11 @@
       if (sectionName.indexOf("cardiac") !== -1) {
         sections.cardiac.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       } else if (sectionName.indexOf("lung") !== -1) {
-        sections.lung.push(boxes[i].getAttribute("data-finding"));
+        sections.lung.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       } else if (sectionName.indexOf("fast") !== -1) {
-        sections.fast.push(boxes[i].getAttribute("data-finding"));
+        sections.fast.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       } else if (sectionName.indexOf("gastric") !== -1) {
-        sections.gastric.push(boxes[i].getAttribute("data-finding"));
+        sections.gastric.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       } else if (sectionName.indexOf("airway") !== -1) {
         sections.airway.push(boxes[i].getAttribute("data-finding"));
       }
