@@ -470,22 +470,22 @@
   <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Lateral</label>
 </div>
   <table>
+   <tr>
+  <td class="label">Lung Sliding</td>
+  <td class="options">
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="bilateral lung sliding present" /> Bilateral</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent right lung sliding" /> Absent Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent left lung sliding" /> Absent Left</label>
+  </td>
+</tr>
     <tr>
-      <td class="label">Lung Sliding</td>
-      <td class="options">
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="bilateral lung sliding present" /> Bilateral</label>
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent right lung sliding" /> Absent Right</label>
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent left lung sliding" /> Absent Left</label>
-      </td>
-    </tr>
-    <tr>
-      <td class="label">Pneumothorax</td>
-      <td class="options">
-        <input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="suspected pneumothorax" /> Suspected</label>
-        <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="lung point identified" /> Lung Point Identified</label>
-      </td>
-    </tr>
+  <td class="label">Pneumothorax</td>
+  <td class="options">
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="suspected pneumothorax" /> Suspected</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="lung point identified" /> Lung Point Identified</label>
+  </td>
+</tr>
     <tr>
       <td class="label">A-lines</td>
       <td class="options">
