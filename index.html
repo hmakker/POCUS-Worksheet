@@ -274,15 +274,15 @@
   </td>
 </tr>
 <tr>
-<td class="label">IVC Collapsibility</td>
-<td class="options">
-  <label class="option">
-    <input type="checkbox" /> &gt; 50%
-  </label>
-  <label class="option">
-    <input type="checkbox" onchange="updateImpression()" data-finding="IVC collapsibility less than 50%" /> &lt; 50%
-  </label>
-</td>
+  <td class="label">IVC Collapsibility</td>
+  <td class="options">
+    <label class="option">
+      <input type="checkbox" data-ivc-collapse="high" onchange="calculateRAP()" /> &gt; 50%
+    </label>
+    <label class="option">
+      <input type="checkbox" data-ivc-collapse="low" onchange="calculateRAP()" data-finding="IVC collapsibility less than 50%" /> &lt; 50%
+    </label>
+  </td>
 </tr>
     <tr>
   <td class="label">Estimated RAP</td>
