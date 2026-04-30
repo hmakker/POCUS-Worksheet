@@ -379,7 +379,7 @@
   <td class="options">
     <label class="option"><input type="checkbox" data-finding="aortic pathology present" /> Present</label>
     <label class="option"><input type="checkbox" /> Absent</label>
-    <input type="text" class="small-input" placeholder="Details" />
+    <input type="text" id="aorticPathologyDetails" class="small-input" placeholder="Details" />
   </td>
 </tr>
     
@@ -612,6 +612,10 @@
     var impression = document.getElementById("impression");
     var findings = [];
     var boxes = document.querySelectorAll("input[data-finding]");
+    var aorticDetails = document.getElementById("aorticPathologyDetails");
+if (aorticDetails && aorticDetails.value.trim() !== "") {
+  findings.push("aortic pathology: " + aorticDetails.value.trim());
+}
 var rapEl = document.getElementById("estimatedRAP");
 if (rapEl && rapEl.getAttribute("data-finding")) {
   findings.push(rapEl.getAttribute("data-finding"));
