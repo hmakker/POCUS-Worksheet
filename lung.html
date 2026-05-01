@@ -352,146 +352,22 @@
 
 <script>
   function updateImpression() {
-  var impression = document.getElementById("impression");
+    var impression = document.getElementById("impression");
+    var findings = [];
 
-  var sections = {
-    cardiac: [],
-    lung: [],
-    fast: [],
-    gastric: [],
-    airway: []
-  };
+    var boxes = document.querySelectorAll("input[data-finding], input[data-normal]");
 
-  var currentSection = "";
-  var boxes = document.querySelectorAll("input[data-finding], input[data-normal]");
-
-  for (var i = 0; i < boxes.length; i++) {
-    if (boxes[i].checked) {
-      var sectionHeader = boxes[i].closest("table, .airway-grid");
-      var sectionName = "";
-
-      if (sectionHeader) {
-        var previous = sectionHeader.previousElementSibling;
-
-        while (previous) {
-          if (previous.classList && previous.classList.contains("section-header")) {
-            sectionName = previous.innerText.trim().toLowerCase();
-            break;
-          }
-          previous = previous.previousElementSibling;
-        }
-      }
-
-      if (sectionName.indexOf("cardiac") !== -1) {
-        sections.cardiac.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
-      } else if (sectionName.indexOf("lung") !== -1) {
-        sections.lung.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
-      } else if (sectionName.indexOf("fast") !== -1) {
-        sections.fast.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
-      } else if (sectionName.indexOf("gastric") !== -1) {
-        sections.gastric.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
-      } else if (sectionName.indexOf("airway") !== -1) {
-        sections.airway.push(boxes[i].getAttribute("data-finding"));
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].checked) {
+        findings.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
       }
     }
-  }
 
-  var rapEl = document.getElementById("estimatedRAP");
-  if (rapEl && rapEl.getAttribute("data-finding")) {
-    sections.cardiac.push(rapEl.getAttribute("data-finding"));
-  }
-
-  var aorticDetails = document.getElementById("aorticPathologyDetails");
-  if (aorticDetails && aorticDetails.value.trim() !== "") {
-    sections.cardiac.push("aortic pathology: " + aorticDetails.value.trim());
-  }
-    
-var tapse = document.getElementById("tapseValue");
-if (tapse && tapse.value !== "") {
-  var val = parseFloat(tapse.value);
-
-  if (!isNaN(val)) {
-    if (val < 17) {
-      sections.cardiac.push("TAPSE " + val + " mm (reduced RV systolic function)");
+    if (findings.length > 0) {
+      impression.value = "Lung: " + findings.join("; ") + ".";
     } else {
-      sections.cardiac.push("TAPSE " + val + " mm");
+      impression.value = "";
     }
-  }
-}
-  var riskEl = document.getElementById("gastricRisk");
-  if (riskEl && riskEl.getAttribute("data-risk") === "high") {
-    sections.gastric.push("high aspiration risk");
-  }
-
-  var output = [];
-
-  if (sections.cardiac.length > 0) {
-    output.push("Cardiac: " + sections.cardiac.join("; ") + ".");
-  }
-
-  if (sections.lung.length > 0) {
-    output.push("Lung: " + sections.lung.join("; ") + ".");
-  }
-
-  if (sections.fast.length > 0) {
-    output.push("FAST: " + sections.fast.join("; ") + ".");
-  }
-
-  if (sections.gastric.length > 0) {
-    output.push("Gastric: " + sections.gastric.join("; ") + ".");
-  }
-
-  if (sections.airway.length > 0) {
-    output.push("Airway: " + sections.airway.join("; ") + ".");
-  }
-
-  impression.value = output.join("\n");
-}
-
-  function calculateGastric() {
-    var age = parseFloat(document.getElementById("gastricAge").value);
-    var kg = parseFloat(document.getElementById("gastricKg").value);
-    var csa = parseFloat(document.getElementById("gastricCSA").value);
-
-    var volumeEl = document.getElementById("gastricVolume");
-    var volumeKgEl = document.getElementById("gastricVolumeKg");
-    var riskEl = document.getElementById("gastricRisk");
-    var solidEl = document.getElementById("solidGastricContent");
-    var solidChecked = solidEl && solidEl.checked;
-
-    if (isNaN(age) || isNaN(kg) || isNaN(csa) || kg <= 0) {
-      volumeEl.textContent = "-- mL";
-      volumeKgEl.textContent = "-- mL/kg";
-
-      if (solidChecked) {
-        riskEl.textContent = "Risk: High";
-        riskEl.setAttribute("data-risk", "high");
-      } else {
-        riskEl.textContent = "Risk: --";
-        riskEl.removeAttribute("data-risk");
-      }
-
-      updateImpression();
-      return;
-    }
-
-    var volume = 27.0 + (14.6 * csa) - (1.28 * age);
-    if (volume < 0) volume = 0;
-
-    var mlkg = volume / kg;
-
-    volumeEl.textContent = volume.toFixed(1) + " mL";
-    volumeKgEl.textContent = mlkg.toFixed(2) + " mL/kg";
-
-    if (solidChecked || mlkg > 1.5) {
-      riskEl.textContent = "Risk: High";
-      riskEl.setAttribute("data-risk", "high");
-    } else {
-      riskEl.textContent = "Risk: Low";
-      riskEl.setAttribute("data-risk", "low");
-    }
-
-    updateImpression();
   }
 
   function copyImpression() {
@@ -517,47 +393,17 @@ if (tapse && tapse.value !== "") {
       }
     }
     document.getElementById("impression").value = "";
-    if (document.getElementById("gastricVolume")) {
-      document.getElementById("gastricVolume").textContent = "-- mL";
-      document.getElementById("gastricVolumeKg").textContent = "-- mL/kg";
-      document.getElementById("gastricRisk").textContent = "Risk: --";
-      document.getElementById("gastricRisk").removeAttribute("data-risk");
-    }
   }
 
   window.onload = function() {
     var boxes = document.querySelectorAll("input[type='checkbox']");
     for (var i = 0; i < boxes.length; i++) {
-      boxes[i].addEventListener("change", function() { updateImpression(); calculateGastric(); });
-      boxes[i].addEventListener("click", function() { updateImpression(); calculateGastric(); });
+      boxes[i].addEventListener("change", updateImpression);
+      boxes[i].addEventListener("click", updateImpression);
     }
-    calculateGastric();
     updateImpression();
   };
-  function calculateRAP() {
-  var ivcLarge = document.querySelector('input[data-ivc-size="large"]');
-  var collapseHigh = document.querySelector('input[data-ivc-collapse="high"]');
-  var collapseLow = document.querySelector('input[data-ivc-collapse="low"]');
-  var rapEl = document.getElementById("estimatedRAP");
 
-  if (!ivcLarge || !collapseHigh || !collapseLow || !rapEl) return;
-
-  if (ivcLarge.checked && collapseLow.checked) {
-  rapEl.textContent = "RAP: 15 mmHg";
-  rapEl.setAttribute("data-finding", "estimated right atrial pressure 15 mmHg");
-} else if (ivcLarge.checked && collapseHigh.checked) {
-  rapEl.textContent = "RAP: 8 mmHg";
-  rapEl.setAttribute("data-finding", "estimated right atrial pressure 8 mmHg");
-} else if (!ivcLarge.checked && collapseHigh.checked) {
-  rapEl.textContent = "RAP: 3 mmHg";
-  rapEl.setAttribute("data-finding", "estimated right atrial pressure 3 mmHg");
-} else {
-  rapEl.textContent = "RAP: --";
-  rapEl.removeAttribute("data-finding");
-}
-
-updateImpression();
-}
 </script>
 
 </body>
