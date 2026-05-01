@@ -297,7 +297,7 @@
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" /> Right</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" /> Left</label>
     <label class="option">
-  <input type="checkbox" onchange="updateImpression()" data-finding="lung point identified" /> Lung Point
+  <input type="checkbox" id="lungPointCheckbox" onchange="updateImpression()" /> Lung Point
 </label>
 <input type="text" id="lungPointLocation" class="small-input" placeholder="location" oninput="updateImpression()" />
   </td>
@@ -373,7 +373,7 @@
       }
     }
 var lungPointBox = document.getElementById("lungPointLocation");
-var lungPointChecked = document.querySelector('input[data-finding="lung point identified"]');
+var lungPointChecked = document.getElementById("lungPointCheckbox");
 
 if (lungPointChecked && lungPointChecked.checked && lungPointBox && lungPointBox.value.trim() !== "") {
   findings.push("lung point at " + lungPointBox.value.trim());
