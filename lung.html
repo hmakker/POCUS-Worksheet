@@ -290,18 +290,18 @@
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent left lung sliding" /> Absent Left</label>
   </td>
 </tr>
+    
     <tr>
   <td class="label">Pneumothorax</td>
   <td class="options">
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" /> Right</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" /> Left</label>
-    <label class="option">
-  <input type="checkbox" id="lungPointCheckbox" onchange="updateImpression()" /> Lung Point
-</label>
-<input type="text" id="lungPointLocation" class="small-input" placeholder="location" oninput="updateImpression()" />
+    <label class="option"><input type="checkbox" id="lungPointCheckbox" onchange="updateImpression()" /> Lung Point</label>
+    <input type="text" id="lungPointLocation" class="small-input" placeholder="location" oninput="updateImpression()" />
   </td>
 </tr>
+    
     <tr>
   <td class="label">A-lines</td>
   <td class="options">
@@ -375,8 +375,12 @@
 var lungPointBox = document.getElementById("lungPointLocation");
 var lungPointChecked = document.getElementById("lungPointCheckbox");
 
-if (lungPointChecked && lungPointChecked.checked && lungPointBox && lungPointBox.value.trim() !== "") {
-  findings.push("lung point at " + lungPointBox.value.trim());
+if (lungPointChecked && lungPointChecked.checked) {
+  if (lungPointBox && lungPointBox.value.trim() !== "") {
+    findings.push("lung point at " + lungPointBox.value.trim());
+  } else {
+    findings.push("lung point identified");
+  }
 }
     if (findings.length > 0) {
       impression.value = "Lung: " + findings.join("; ") + ".";
