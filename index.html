@@ -523,7 +523,6 @@
         type="checkbox"
         id="lungPointCheckbox"
         onchange="updateImpression()"
-        data-finding="lung point identified"
       />
       Lung Point
     </label>
@@ -771,7 +770,16 @@ if (wallMotion && wallMotion.value.trim() !== "") {
   if (riskEl && riskEl.getAttribute("data-risk") === "high") {
     sections.gastric.push("high aspiration risk");
   }
+var lungPointChecked = document.getElementById("lungPointCheckbox");
+var lungPointLocation = document.getElementById("lungPointLocation");
 
+if (lungPointChecked && lungPointChecked.checked) {
+  if (lungPointLocation && lungPointLocation.value.trim() !== "") {
+    sections.lung.push("lung point at " + lungPointLocation.value.trim());
+  } else {
+    sections.lung.push("lung point identified");
+  }
+}
   var output = [];
 
   if (sections.cardiac.length > 0) {
