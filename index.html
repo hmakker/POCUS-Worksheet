@@ -294,7 +294,19 @@
     <label class="option"><input type="checkbox" data-finding="LV depressed function" /> Depressed</label>
   </td>
 </tr>
-
+<tr>
+  <td class="label">Wall Motion Abnormalities</td>
+  <td class="options">
+    <input
+      type="text"
+      id="wallMotionDetails"
+      class="small-input"
+      placeholder="e.g. inferolateral hypokinesis"
+      oninput="updateImpression()"
+      style="width: 250px;"
+    />
+  </td>
+</tr>
     
 <tr>
   <td class="label">RV</td>
@@ -704,6 +716,12 @@ if (tapse && tapse.value !== "") {
       sections.cardiac.push("TAPSE " + val + " mm");
     }
   }
+}
+  var wallMotion = document.getElementById("wallMotionDetails");
+if (wallMotion && wallMotion.value.trim() !== "") {
+  sections.cardiac.push(
+    "wall motion abnormality: " + wallMotion.value.trim()
+  );
 }
   var riskEl = document.getElementById("gastricRisk");
   if (riskEl && riskEl.getAttribute("data-risk") === "high") {
