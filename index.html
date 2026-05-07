@@ -505,7 +505,7 @@
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" /> Right</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" /> Left</label>
-    <label class="option"><input type="checkbox" id="lungPointCheckbox" onchange="updateImpression()" /> Lung Point</label>
+    <label class="option"><input type="checkbox"id="lungPointCheckbox"onchange="updateImpression()"data-finding="lung point identified"/>
     <input type="text" id="lungPointLocation" class="small-input" placeholder="Location" oninput="updateImpression()" />
   </td>
 </tr>
@@ -742,16 +742,7 @@ if (wallMotion && wallMotion.value.trim() !== "") {
   if (riskEl && riskEl.getAttribute("data-risk") === "high") {
     sections.gastric.push("high aspiration risk");
   }
-var lungPointBox = document.getElementById("lungPointLocation");
-var lungPointChecked = document.getElementById("lungPointCheckbox");
 
-if (lungPointChecked && lungPointChecked.checked) {
-  if (lungPointBox && lungPointBox.value.trim() !== "") {
-    sections.lung.push("lung point at " + lungPointBox.value.trim());
-  } else {
-    sections.lung.push("lung point identified");
-  }
-}
   var output = [];
 
   if (sections.cardiac.length > 0) {
