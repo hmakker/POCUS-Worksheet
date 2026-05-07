@@ -678,20 +678,23 @@
 
   for (var i = 0; i < boxes.length; i++) {
     if (boxes[i].checked) {
-      var sectionHeader = boxes[i].closest("table, .airway-grid");
-      var sectionName = "";
+      var parentSection = boxes[i].closest(".page");
+var sectionName = "";
 
-      if (sectionHeader) {
-        var previous = sectionHeader.previousElementSibling;
+var current = boxes[i].parentElement;
 
-        while (previous) {
-          if (previous.classList && previous.classList.contains("section-header")) {
-            sectionName = previous.innerText.trim().toLowerCase();
-            break;
-          }
-          previous = previous.previousElementSibling;
-        }
-      }
+while (current) {
+  if (
+    current.previousElementSibling &&
+    current.previousElementSibling.classList &&
+    current.previousElementSibling.classList.contains("section-header")
+  ) {
+    sectionName = current.previousElementSibling.innerText.trim().toLowerCase();
+    break;
+  }
+
+  current = current.parentElement;
+}
 
       if (sectionName.indexOf("cardiac") !== -1) {
         sections.cardiac.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
