@@ -487,6 +487,7 @@
 <div class="quality-row">
   <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Anterior</label>
   <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Lateral</label>
+  <label class="quality"><input type="checkbox" onchange="updateImpression()" /> Posterior</label>
 </div>
   <table>
    <tr>
@@ -497,49 +498,59 @@
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="absent left lung sliding" /> Absent Left</label>
   </td>
 </tr>
+    
     <tr>
   <td class="label">Pneumothorax</td>
   <td class="options">
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="suspected pneumothorax" /> Suspected</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="lung point identified" /> Lung Point Identified</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" /> Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" /> Left</label>
+    <label class="option"><input type="checkbox" id="lungPointCheckbox" onchange="updateImpression()" /> Lung Point</label>
+    <input type="text" id="lungPointLocation" class="small-input" placeholder="Location" oninput="updateImpression()" />
   </td>
 </tr>
+    
     <tr>
   <td class="label">A-lines</td>
   <td class="options">
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="A-lines present" /> Present</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="A-lines absent" /> Absent</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="A-lines present bilaterally" /> Bilateral</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="A-lines absent on right" /> Absent Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="A-lines absent on left" /> Absent Left</label>
   </td>
 </tr>
     <tr>
   <td class="label">B-lines</td>
   <td class="options">
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no B-lines" /> None</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="focal B-lines" /> Focal</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="diffuse B-lines" /> Diffuse</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="focal B-lines on right" /> Focal Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="focal B-lines on left" /> Focal Left</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="diffuse B-lines on right" /> Diffuse Right</label>
+  <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="diffuse B-lines on left" /> Diffuse Left</label>
   </td>
 </tr>
     <tr>
   <td class="label">Consolidation</td>
   <td class="options">
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no lung consolidation" /> No</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no lung consolidation" /> None</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right lung consolidation" /> Right</label>
     <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left lung consolidation" /> Left</label>
   </td>
 </tr>
+</tr>
    <tr>
   <td class="label">Air Bronchograms</td>
   <td class="options">
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no air bronchograms" /> Absent</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="air bronchograms present" /> Present</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no air bronchograms" /> None</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="air bronchograms on right" /> Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="air bronchograms on left" /> Left</label>
   </td>
 </tr>
     <tr>
   <td class="label">Pleural Effusion</td>
   <td class="options">
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pleural effusion" /> Absent</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="pleural effusion present" /> Present</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pleural effusion" /> None</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pleural effusion" /> Right</label>
+    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pleural effusion" /> Left</label>
   </td>
 </tr>
   </table>
