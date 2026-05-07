@@ -739,7 +739,16 @@ if (wallMotion && wallMotion.value.trim() !== "") {
   if (riskEl && riskEl.getAttribute("data-risk") === "high") {
     sections.gastric.push("high aspiration risk");
   }
+var lungPointBox = document.getElementById("lungPointLocation");
+var lungPointChecked = document.getElementById("lungPointCheckbox");
 
+if (lungPointChecked && lungPointChecked.checked) {
+  if (lungPointBox && lungPointBox.value.trim() !== "") {
+    sections.lung.push("lung point at " + lungPointBox.value.trim());
+  } else {
+    sections.lung.push("lung point identified");
+  }
+}
   var output = [];
 
   if (sections.cardiac.length > 0) {
