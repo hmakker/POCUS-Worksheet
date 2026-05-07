@@ -499,14 +499,43 @@
   </td>
 </tr>
     
-    <tr>
+   <tr>
   <td class="label">Pneumothorax</td>
   <td class="options">
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" /> None</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" /> Right</label>
-    <label class="option"><input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" /> Left</label>
-    <label class="option"><input type="checkbox"id="lungPointCheckbox"onchange="updateImpression()"data-finding="lung point identified"/>
-    <input type="text" id="lungPointLocation" class="small-input" placeholder="Location" oninput="updateImpression()" />
+    
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-normal="no pneumothorax" />
+      None
+    </label>
+
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-finding="right pneumothorax" />
+      Right
+    </label>
+
+    <label class="option">
+      <input type="checkbox" onchange="updateImpression()" data-finding="left pneumothorax" />
+      Left
+    </label>
+
+    <label class="option">
+      <input
+        type="checkbox"
+        id="lungPointCheckbox"
+        onchange="updateImpression()"
+        data-finding="lung point identified"
+      />
+      Lung Point
+    </label>
+
+    <input
+      type="text"
+      id="lungPointLocation"
+      class="small-input"
+      placeholder="Location"
+      oninput="updateImpression()"
+    />
+
   </td>
 </tr>
     
