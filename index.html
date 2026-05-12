@@ -695,86 +695,46 @@
     airway: []
   };
 
-  var currentSection = "";
-  var boxes = document.querySelectorAll("table input[data-finding], table input[data-normal]");
+  function getSectionName(el) {
+    var table = el.closest("table");
+    var current = table;
+
+    while (current) {
+      current = current.previousElementSibling;
+      if (
+        current &&
+        current.classList &&
+        current.classList.contains("section-header")
+      ) {
+        return current.innerText.trim().toLowerCase();
+      }
+    }
+
+    return "";
+  }
+
+  var boxes = document.querySelectorAll("input[data-finding], input[data-normal]");
 
   for (var i = 0; i < boxes.length; i++) {
     if (boxes[i].checked) {
-      
-      
- var sectionName = "";
+      var text =
+        boxes[i].getAttribute("data-finding") ||
+        boxes[i].getAttribute("data-normal");
 
-var current = boxes[i];
-
-while (current) {
-  if (
-    current.previousElementSibling &&
-    current.previousElementSibling.classList &&
-    current.previousElementSibling.classList.contains("section-header")
-  ) {
-    sectionName = current.previousElementSibling.innerText.trim().toLowerCase();
-    break;
-  }
-
-  current = current.parentElement;
-}
+      var sectionName = getSectionName(boxes[i]);
 
       if (sectionName.indexOf("cardiac") !== -1) {
-        sections.cardiac.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
+        sections.cardiac.push(text);
       } else if (sectionName.indexOf("lung") !== -1) {
-        sections.lung.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
+        sections.lung.push(text);
       } else if (sectionName.indexOf("fast") !== -1) {
-        sections.fast.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
+        sections.fast.push(text);
       } else if (sectionName.indexOf("gastric") !== -1) {
-        sections.gastric.push(boxes[i].getAttribute("data-finding") || boxes[i].getAttribute("data-normal"));
-      } else if (sectionName.indexOf("airway") !== -1) {
-        sections.airway.push(boxes[i].getAttribute("data-finding"));
+        sections.gastric.push(text);
       }
     }
   }
 
-  var rapEl = document.getElementById("estimatedRAP");
-  if (rapEl && rapEl.getAttribute("data-finding")) {
-    sections.cardiac.push(rapEl.getAttribute("data-finding"));
-  }
-
-  var aorticDetails = document.getElementById("aorticPathologyDetails");
-  if (aorticDetails && aorticDetails.value.trim() !== "") {
-    sections.cardiac.push("aortic pathology: " + aorticDetails.value.trim());
-  }
-    
-var tapse = document.getElementById("tapseValue");
-if (tapse && tapse.value !== "") {
-  var val = parseFloat(tapse.value);
-
-  if (!isNaN(val)) {
-    if (val < 17) {
-      sections.cardiac.push("TAPSE " + val + " mm (reduced RV systolic function)");
-    } else {
-      sections.cardiac.push("TAPSE " + val + " mm");
-    }
-  }
-}
-  var wallMotion = document.getElementById("wallMotionDetails");
-if (wallMotion && wallMotion.value.trim() !== "") {
-  sections.cardiac.push(
-    "wall motion abnormality: " + wallMotion.value.trim()
-  );
-}
-  var riskEl = document.getElementById("gastricRisk");
-  if (riskEl && riskEl.getAttribute("data-risk") === "high") {
-    sections.gastric.push("high aspiration risk");
-  }
-var lungPointChecked = document.getElementById("lungPointCheckbox");
-var lungPointLocation = document.getElementById("lungPointLocation");
-
-if (lungPointChecked && lungPointChecked.checked) {
-  if (lungPointLocation && lungPointLocation.value.trim() !== "") {
-    sections.lung.push("lung point at " + lungPointLocation.value.trim());
-  } else {
-    sections.lung.push("lung point identified");
-  }
-}
   var output = [];
 
   if (sections.cardiac.length > 0) {
@@ -791,10 +751,6 @@ if (lungPointChecked && lungPointChecked.checked) {
 
   if (sections.gastric.length > 0) {
     output.push("Gastric: " + sections.gastric.join("; ") + ".");
-  }
-
-  if (sections.airway.length > 0) {
-    output.push("Airway: " + sections.airway.join("; ") + ".");
   }
 
   impression.value = output.join("\n");
