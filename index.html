@@ -700,10 +700,11 @@
 
   for (var i = 0; i < boxes.length; i++) {
     if (boxes[i].checked) {
-      var parentSection = boxes[i].closest(".page");
-var sectionName = "";
+      
+      
+ var sectionName = "";
 
-var current = boxes[i].parentElement;
+var current = boxes[i];
 
 while (current) {
   if (
