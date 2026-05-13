@@ -717,8 +717,8 @@
     <label>Vocal Cords <input type="checkbox" onchange="updateImpression()" data-finding="Vocal Cords" /></label>
     <label>Hyoid Bone <input type="checkbox" onchange="updateImpression()" data-finding="Hyoid Bone" /></label>
     <label>Epiglottis <input type="checkbox" onchange="updateImpression()" data-finding="Epiglottis" /></label>
-    <label>Tongue <input type="checkbox" onchange="updateImpression()" data-finding"Tongue" /></label>
-    <label>Esophagus <input type="checkbox" onchange="updateImpression()" data-finding"Esophagus" /></label>
+    <label>Tongue <input type="checkbox" onchange="updateImpression()" data-finding="Tongue" /></label>
+<label>Esophagus <input type="checkbox" onchange="updateImpression()" data-finding="Esophagus" /></label>
   </div>
 </details>
 
@@ -752,8 +752,17 @@
   };
 
   function getSectionName(el) {
-    var table = el.closest("table");
-    var current = table;
+  var section = el.closest(".exam-section");
+
+  if (section) {
+    var header = section.querySelector(".section-header");
+    if (header) {
+      return header.innerText.trim().toLowerCase();
+    }
+  }
+
+  return "";
+}
 
     while (current) {
       current = current.previousElementSibling;
