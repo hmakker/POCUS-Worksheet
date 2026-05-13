@@ -611,10 +611,15 @@
 
  </details>
 
-  <div class="section-header">
-    <span>FAST</span>
-  </div>
+<details class="exam-section">
+
+  <summary class="section-header">
+    FAST
+  </summary>
+
   <table>
+
+    
   <tr>
   <td class="label">RUQ Free Fluid <label class="option"><input type="checkbox" /> Adequate Image</label></td>
   <td class="options">
@@ -653,16 +658,22 @@
 </tr>
   </table>
 
+</details>
   
- <div class="section-header">
-  <span>GASTRIC</span>
-</div>
+<details class="exam-section">
 
-<div class="quality-row">
-  <label class="quality"><input type="checkbox" /> Supine</label>
-  <label class="quality"><input type="checkbox" /> RLD</label>
-</div>
+  <summary class="section-header">
+    GASTRIC
+  </summary>
+
+  <div class="quality-row">
+    <label class="quality"><input type="checkbox" /> Supine</label>
+    <label class="quality"><input type="checkbox" /> RLD</label>
+  </div>
+
   <table>
+
+    
     <tr>
       <td class="label">Gastric Content</td>
       <td class="options">
@@ -688,11 +699,17 @@
       </td>
     </tr>
   </table>
+</details>
+  
+<details class="exam-section">
 
-<div class="section-header">
-    <span>AIRWAY</span>
-  </div>
+  <summary class="section-header">
+    AIRWAY
+  </summary>
+
   <div class="airway-grid">
+
+    
     <label>Trachea <input type="checkbox" onchange="updateImpression()" /></label>
     <label>Tracheal rings <input type="checkbox" onchange="updateImpression()" /></label>
     <label>Cricoid cartilage <input type="checkbox" onchange="updateImpression()" /></label>
@@ -704,7 +721,9 @@
     <label>Tongue <input type="checkbox" onchange="updateImpression()" /></label>
     <label>Esophagus <input type="checkbox" onchange="updateImpression()" /></label>
   </div>
+</details>
 
+  
   <div class="impression">
     <div class="impression-title">Overall Impression:</div>
     <textarea id="impression"></textarea>
