@@ -764,19 +764,6 @@
   return "";
 }
 
-    while (current) {
-      current = current.previousElementSibling;
-      if (
-        current &&
-        current.classList &&
-        current.classList.contains("section-header")
-      ) {
-        return current.innerText.trim().toLowerCase();
-      }
-    }
-
-    return "";
-  }
 
   var boxes = document.querySelectorAll("input[data-finding], input[data-normal]");
 
