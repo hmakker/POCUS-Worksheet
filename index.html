@@ -261,6 +261,33 @@
   }
 }
 
+  @media (max-width: 600px) {
+  ...
+}
+
+.exam-section {
+  margin-top: 8px;
+}
+
+.exam-section > summary.section-header {
+  cursor: pointer;
+  list-style: none;
+}
+
+.exam-section > summary.section-header::-webkit-details-marker {
+  display: none;
+}
+
+.exam-section > summary.section-header::after {
+  content: " ▼";
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.exam-section[open] > summary.section-header::after {
+  content: " ▲";
+}
+
   .footer-credit {
   text-align: center;
   margin-top: 25px;
@@ -491,6 +518,8 @@
 </tr>
    
   </table>
+
+    </details>
 
   <div class="section-header">
   <span>LUNG</span>
