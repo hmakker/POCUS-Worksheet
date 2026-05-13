@@ -790,14 +790,6 @@
     }
   }
   
-var airwayBoxes = document.querySelectorAll(".airway-grid input[data-finding]");
-
-for (var a = 0; a < airwayBoxes.length; a++) {
-  if (airwayBoxes[a].checked) {
-    sections.airway.push(airwayBoxes[a].getAttribute("data-finding"));
-  }
-}
-  
   var output = [];
 
   if (sections.cardiac.length > 0) {
