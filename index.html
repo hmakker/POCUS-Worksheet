@@ -823,18 +823,23 @@
     var riskEl = document.getElementById("gastricRisk");
     var solidEl = document.getElementById("solidGastricContent");
     var solidChecked = solidEl && solidEl.checked;
+    var emptyEl = document.querySelector('input[data-normal="stomach empty"]');
+    var emptyChecked = emptyEl && emptyEl.checked;
 
     if (isNaN(age) || isNaN(kg) || isNaN(csa) || kg <= 0) {
       volumeEl.textContent = "-- mL";
       volumeKgEl.textContent = "-- mL/kg";
 
-      if (solidChecked) {
-        riskEl.textContent = "Risk: High";
-        riskEl.setAttribute("data-risk", "high");
-      } else {
-        riskEl.textContent = "Risk: --";
-        riskEl.removeAttribute("data-risk");
-      }
+     if (solidChecked) {
+  riskEl.textContent = "Risk: High";
+  riskEl.setAttribute("data-risk", "high");
+} else if (emptyChecked) {
+  riskEl.textContent = "Risk: Low";
+  riskEl.setAttribute("data-risk", "low");
+} else {
+  riskEl.textContent = "Risk: --";
+  riskEl.removeAttribute("data-risk");
+}
 
       updateImpression();
       return;
