@@ -709,16 +709,16 @@
   <div class="airway-grid">
 
     
-    <label>Trachea <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Tracheal rings <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Cricoid cartilage <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Cricothyroid membrane <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Thyroid cartilage <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Vocal cords <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Hyoid bone <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Epiglottis <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Tongue <input type="checkbox" onchange="updateImpression()" /></label>
-    <label>Esophagus <input type="checkbox" onchange="updateImpression()" /></label>
+    <label>Trachea <input type="checkbox" onchange="updateImpression()" data-finding="Trachea" /></label>
+    <label>Tracheal Rings <input type="checkbox" onchange="updateImpression()" data-finding="Tracheal Rings"/></label>
+    <label>Cricoid Cartilage <input type="checkbox" onchange="updateImpression()" data-finding="Cricoid Cartilage" /></label>
+    <label>Cricothyroid Membrane <input type="checkbox" onchange="updateImpression()" data-finding="Cricothyroid Membrane"/></label>
+    <label>Thyroid Cartilage <input type="checkbox" onchange="updateImpression()" data-finding="Thyroid Cartilage" /></label>
+    <label>Vocal Cords <input type="checkbox" onchange="updateImpression()" data-finding="Vocal Cords" /></label>
+    <label>Hyoid Bone <input type="checkbox" onchange="updateImpression()" data-finding="Hyoid Bone" /></label>
+    <label>Epiglottis <input type="checkbox" onchange="updateImpression()" data-finding="Epiglottis" /></label>
+    <label>Tongue <input type="checkbox" onchange="updateImpression()" data-finding"Tongue" /></label>
+    <label>Esophagus <input type="checkbox" onchange="updateImpression()" data-finding"Esophagus" /></label>
   </div>
 </details>
 
@@ -788,6 +788,9 @@
       } else if (sectionName.indexOf("gastric") !== -1) {
         sections.gastric.push(text);
       }
+      else if (sectionName.indexOf("airway") !== -1) {
+        sections.airway.push(text);
+      }
     }
   }
 
@@ -808,7 +811,9 @@
   if (sections.gastric.length > 0) {
     output.push("Gastric: " + sections.gastric.join("; ") + ".");
   }
-
+  if (sections.airway.length > 0) {
+  output.push("Airway: visualized " + sections.airway.join(", ") + ".");
+  }
   impression.value = output.join("\n");
 }
 
