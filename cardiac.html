@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>POCUS Worksheet</title>
+<title>Cardiac POCUS Worksheet</title>
 <style>
   :root {
     --border: #222;
@@ -62,5 +61,1082 @@
   flex-wrap: wrap;
   background: var(--light);
   border: 1px solid var(--border);
-Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page.
-Copied!
+  padding: 5px 8px;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+  .quality {
+    font-weight: normal;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+.quality-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 18px;
+  padding: 8px 8px;
+  margin: 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--light);
+}
+
+  .quality-row .quality {
+  font-size: 13px;
+}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+  }
+
+  td {
+    border: 1px solid var(--border);
+    padding: 4px 6px;
+    vertical-align: middle;
+  }
+
+  td.label {
+    width: 27%;
+    font-weight: 600;
+  }
+
+  td.options {
+  width: 73%;
+  white-space: normal;
+}
+
+  label.option {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  gap: 5px;
+}
+
+  input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  accent-color: #111;
+  flex-shrink: 0;
+}
+
+  .impression {
+    margin-top: 8px;
+  }
+
+  .impression-title {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 88px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+    padding: 6px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .small-input {
+    width: 72px;
+    height: 26px;
+    font-size: 14px;
+    padding: 2px 4px;
+    border: 1px solid var(--border);
+  }
+
+  .calc-result {
+    display: inline-block;
+    min-width: 90px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    background: #fff;
+    font-weight: bold;
+  }
+
+  button {
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #222;
+    background: #f5f5f5;
+    border-radius: 6px;
+  }
+
+  .text-input {
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+  }
+
+  .note {
+    font-size: 12px;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  .note button {
+    font-size: 12px;
+    padding: 2px 6px;
+    margin-left: 6px;
+  }
+
+  @media print {
+    body { padding: 0.25in; }
+    .note { display: none; }
+    .page { max-width: none; }
+    .buttons { display: none; }
+    input[type="checkbox"] { width: 14px; height: 14px; }
+    td { padding: 3px 5px; }
+    .section-header { margin-top: 5px; padding: 4px 7px; }
+    textarea { height: 72px; }
+  }
+
+ @media (max-width: 600px) {
+  body { padding: 8px; }
+  h1 { font-size: 22px; }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  td.label {
+    background: #f7f7f7;
+    font-weight: bold;
+  }
+
+  td.options {
+    white-space: normal !important;
+  }
+
+  label.option {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  gap: 5px;
+}
+
+}
+
+.exam-section {
+  margin-top: 8px;
+}
+  .footer-credit {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  font-size: 12px;
+  color: #777;
+  font-style: italic;
+}
+  .exam-section > summary.section-header {
+    font-size: 18px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .exam-section > summary.section-header::-webkit-details-marker {
+    display: none;
+  }
+
+  .exam-section > summary.section-header::after {
+    content: " \25BC";
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  .exam-section[open] > summary.section-header::after {
+    content: " \25B2";
+  }
+
+  .section-toggle {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .section-toggle button {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+
+  @media print {
+    .section-toggle { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .quality-row { flex-wrap: wrap; gap: 8px 14px; }
+    .exam-section > summary.section-header { font-size: 15px; }
+  }
+
+
+  textarea {
+    height: 200px;
+  }
+
+  @media print {
+    textarea { height: 170px; }
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+  <h1>Cardiac POCUS Worksheet</h1>
+
+  <div class="top-row">
+    <div class="field"><span>Your Name:</span><input type="text" /></div>
+    <div class="field"><span>Date:</span><input type="text" /></div>
+  </div>
+
+  <!--
+    How the impression is built (one line per section):
+    - data-normal / data-finding on a checkbox: text added when checked.
+    - Checking a data-normal box unchecks the data-finding boxes in the same row, and vice versa.
+    - Checkboxes sharing a name are mutually exclusive (one at a time, can still be unticked).
+    - data-view: views obtained, listed after the section name.
+    - data-text on a text input: template, {} is replaced by what was typed.
+    - data-result on a .calc-result span: set by the calculators.
+  -->
+
+  <div class="section-toggle">
+    <button type="button" onclick="setAllSections(true)">Expand All</button>
+    <button type="button" onclick="setAllSections(false)">Collapse All</button>
+  </div>
+
+  <details class="exam-section" data-section="Study">
+  <summary class="section-header">STUDY</summary>
+
+  <div class="quality-row">
+    <label class="quality"><input type="checkbox" data-view="PLAX" /> PLAX</label>
+    <label class="quality"><input type="checkbox" data-view="PSAX" /> PSAX</label>
+    <label class="quality"><input type="checkbox" data-view="A4C" /> A4C</label>
+    <label class="quality"><input type="checkbox" data-view="SubX" /> SubX</label>
+    <label class="quality"><input type="checkbox" data-view="IVC" /> IVC</label>
+  </div>
+
+  <table>
+    <tr>
+      <td class="label">Indication</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-finding="indication shock / hypotension" /> Shock / Hypotension</label>
+        <label class="option"><input type="checkbox" data-finding="indication respiratory failure" /> Respiratory Failure</label>
+        <label class="option"><input type="checkbox" data-finding="indication cardiac arrest" /> Cardiac Arrest</label>
+        <label class="option"><input type="checkbox" data-finding="indication volume assessment" /> Volume Assessment</label>
+        <label class="option"><input type="checkbox" data-finding="follow-up study" /> Follow-up</label>
+        <input type="text" class="small-input text-input" placeholder="Other indication" data-text="indication {}" />
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Breathing</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="vent" id="ventSpont" data-finding="spontaneously breathing" /> Spontaneous</label>
+        <label class="option"><input type="checkbox" name="vent" id="ventMech" data-finding="mechanically ventilated" /> Mechanically Ventilated</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Sex (for ASE ranges)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="sex" id="sexM" data-finding="male" /> Male</label>
+        <label class="option"><input type="checkbox" name="sex" id="sexF" data-finding="female" /> Female</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Rhythm</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="rhythm" data-finding="sinus rhythm" /> Sinus</label>
+        <label class="option"><input type="checkbox" name="rhythm" data-finding="atrial fibrillation" /> AF</label>
+        <label class="option"><input type="checkbox" name="rhythm" data-finding="paced rhythm" /> Paced</label>
+        <label class="option"><input type="checkbox" name="rhythm" data-finding="other rhythm" /> Other</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Image Quality</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="quality" data-finding="good image quality" /> Good</label>
+        <label class="option"><input type="checkbox" name="quality" data-finding="limited image quality" /> Limited</label>
+        <label class="option"><input type="checkbox" name="quality" data-finding="poor image quality" /> Poor</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Cardiac Activity (arrest)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="activity" data-finding="organized cardiac activity" /> Organized</label>
+        <label class="option"><input type="checkbox" name="activity" data-finding="fibrillatory cardiac activity" /> Fibrillatory</label>
+        <label class="option"><input type="checkbox" name="activity" data-finding="cardiac standstill" /> Standstill</label>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="LV">
+  <summary class="section-header">LEFT VENTRICLE</summary>
+  <table>
+    <tr>
+      <td class="label">LV Size</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="lvSize" data-normal="LV size normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="lvSize" data-finding="LV small" /> Small</label>
+        <label class="option"><input type="checkbox" name="lvSize" data-finding="LV dilated" /> Dilated</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">LV Systolic Function (visual)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="lvFn" data-finding="LV hyperdynamic" /> Hyperdynamic (EF &gt; 72% M, &gt; 74% F)</label>
+        <label class="option"><input type="checkbox" name="lvFn" data-normal="LV systolic function normal" /> Normal (52-72% M, 54-74% F)</label>
+        <label class="option"><input type="checkbox" name="lvFn" data-finding="LV systolic function mildly reduced" /> Mildly Reduced (41-51% M, 41-53% F)</label>
+        <label class="option"><input type="checkbox" name="lvFn" data-finding="LV systolic function moderately reduced" /> Moderately Reduced (30-40%)</label>
+        <label class="option"><input type="checkbox" name="lvFn" data-finding="LV systolic function severely reduced" /> Severely Reduced (&lt; 30%)</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Visual EF (%)</td>
+      <td class="options">
+        <input type="number" id="lvefValue" class="small-input" step="1" min="0" inputmode="decimal" placeholder="e.g. 55" />
+        <span id="lvefResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">LVIDd (mm)</td>
+      <td class="options">
+        <input type="number" id="lviddValue" class="small-input" step="1" min="0" inputmode="decimal" placeholder="e.g. 48" />
+        <span id="lviddResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Other LV Findings</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-finding="end-systolic cavity obliteration (kissing papillary muscles)" /> Kissing Papillary Muscles</label>
+        <label class="option"><input type="checkbox" data-finding="LV hypertrophy" /> LVH (wall &gt; 10 mm M, &gt; 9 mm F)</label>
+        <label class="option"><input type="checkbox" data-finding="possible LVOT obstruction / SAM" /> LVOT Obstruction / SAM</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Wall Motion Abnormalities</td>
+      <td class="options">
+        <input type="text" class="small-input text-input" placeholder="e.g. inferolateral hypokinesis" data-text="wall motion abnormality: {}" />
+      </td>
+    </tr>
+    <tr>
+      <td class="label">EPSS (mm, non-ASE)</td>
+      <td class="options">
+        <input type="number" id="epssValue" class="small-input" step="1" min="0" inputmode="decimal" placeholder="e.g. 5" />
+        <span id="epssResult" class="calc-result">--</span>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="RV">
+  <summary class="section-header">RIGHT VENTRICLE</summary>
+  <table>
+    <tr>
+      <td class="label">RV Size</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="rvSize" data-normal="RV size normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="rvSize" data-finding="RV dilated" /> Dilated</label>
+        <label class="option"><input type="checkbox" name="rvSize" data-finding="RV dilated, larger than LV" /> Larger than LV</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">RV Basal Diameter (mm, A4C)</td>
+      <td class="options">
+        <input type="number" id="rvdValue" class="small-input" step="1" min="0" inputmode="decimal" placeholder="e.g. 38" />
+        <span id="rvdResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">RV Systolic Function (visual)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="rvFn" data-normal="RV systolic function normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="rvFn" data-finding="RV systolic function reduced" /> Reduced</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Interventricular Septum</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="ivs" data-normal="interventricular septum normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="ivs" data-finding="systolic septal flattening (D-sign, pressure overload)" /> Systolic Flattening</label>
+        <label class="option"><input type="checkbox" name="ivs" data-finding="diastolic septal flattening (volume overload)" /> Diastolic Flattening</label>
+        <label class="option"><input type="checkbox" name="ivs" data-finding="paradoxical septal motion" /> Paradoxical</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Other RV Findings</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-finding="McConnell sign" /> McConnell Sign</label>
+        <label class="option"><input type="checkbox" data-finding="RV hypertrophy (free wall over 5 mm)" /> RV Free Wall &gt; 5 mm</label>
+        <label class="option"><input type="checkbox" data-finding="RA dilated" /> RA Dilated (area &gt; 18 cm&sup2;)</label>
+        <label class="option"><input type="checkbox" data-finding="right heart thrombus in transit" /> Thrombus in Transit</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">TAPSE (mm)</td>
+      <td class="options">
+        <input type="number" id="tapseValue" class="small-input" step="1" min="0" inputmode="decimal" placeholder="e.g. 21" />
+        <span id="tapseResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">RV S' (cm/s)</td>
+      <td class="options">
+        <input type="number" id="rvsValue" class="small-input" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 12" />
+        <span id="rvsResult" class="calc-result">--</span>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="Pericardium">
+  <summary class="section-header">PERICARDIUM</summary>
+  <table>
+    <tr>
+      <td class="label">Pericardial Effusion (diastole)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="pe" data-normal="no pericardial effusion" /> None</label>
+        <label class="option"><input type="checkbox" name="pe" data-finding="small pericardial effusion" /> Small (&lt; 1 cm)</label>
+        <label class="option"><input type="checkbox" name="pe" data-finding="moderate pericardial effusion" /> Moderate (1-2 cm)</label>
+        <label class="option"><input type="checkbox" name="pe" data-finding="large pericardial effusion" /> Large (&gt; 2 cm)</label>
+        <label class="option"><input type="checkbox" data-finding="effusion loculated" /> Loculated</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Tamponade Signs</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="no echocardiographic signs of tamponade" /> None</label>
+        <label class="option"><input type="checkbox" data-finding="RA systolic collapse" /> RA Systolic Collapse</label>
+        <label class="option"><input type="checkbox" data-finding="RV diastolic collapse" /> RV Diastolic Collapse</label>
+        <label class="option"><input type="checkbox" data-finding="plethoric IVC" /> Plethoric IVC</label>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="Valves and aorta">
+  <summary class="section-header">VALVES &amp; AORTA</summary>
+  <table>
+    <tr>
+      <td class="label">Aortic Valve</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="aortic valve normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="ar" data-finding="mild aortic regurgitation" /> Mild AR</label>
+        <label class="option"><input type="checkbox" name="ar" data-finding="moderate aortic regurgitation" /> Moderate AR</label>
+        <label class="option"><input type="checkbox" name="ar" data-finding="severe aortic regurgitation" /> Severe AR</label>
+        <label class="option"><input type="checkbox" data-finding="aortic stenosis suspected" /> AS Suspected</label>
+        <label class="option"><input type="checkbox" data-finding="aortic valve not well visualized" /> Not Visualized</label>
+        <label class="option">VTI (cm) <input type="number" id="avVti" class="small-input" step="0.1" min="0" inputmode="decimal" data-text="aortic valve VTI {} cm" /></label>
+        <span id="avaResult" class="calc-result">AVA: --</span>
+        <input type="text" class="small-input text-input" placeholder="e.g. Vmax 4.2 m/s, mean gradient 45 mmHg" data-text="aortic valve: {}" />
+        <div class="note">ASE severe AS: Vmax &ge; 4 m/s, mean gradient &ge; 40 mmHg, AVA &lt; 1.0 cm&sup2;, DVI &lt; 0.25. AVA uses LVOT diameter and VTI from the Flow section. Severe AR: VC &gt; 0.6 cm.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Mitral Valve</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="mitral valve normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="mr" data-finding="mild mitral regurgitation" /> Mild MR</label>
+        <label class="option"><input type="checkbox" name="mr" data-finding="moderate mitral regurgitation" /> Moderate MR</label>
+        <label class="option"><input type="checkbox" name="mr" data-finding="severe mitral regurgitation" /> Severe MR</label>
+        <label class="option"><input type="checkbox" data-finding="mitral stenosis suspected" /> MS Suspected</label>
+        <label class="option"><input type="checkbox" data-finding="mitral valve not well visualized" /> Not Visualized</label>
+        <label class="option">VTI (cm) <input type="number" class="small-input" step="0.1" min="0" inputmode="decimal" data-text="mitral valve VTI {} cm" /></label>
+        <input type="text" class="small-input text-input" placeholder="e.g. mean gradient 8 mmHg, VC 0.7 cm" data-text="mitral valve: {}" />
+        <div class="note">ASE severe MR: VC &ge; 0.7 cm, EROA &ge; 0.40 cm&sup2;. Severe MS: MVA &lt; 1.0 cm&sup2;, mean gradient &gt; 10 mmHg.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Tricuspid Valve</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="tricuspid valve normal" /> Normal</label>
+        <label class="option"><input type="checkbox" name="tr" data-finding="mild tricuspid regurgitation" /> Mild TR</label>
+        <label class="option"><input type="checkbox" name="tr" data-finding="moderate tricuspid regurgitation" /> Moderate TR</label>
+        <label class="option"><input type="checkbox" name="tr" data-finding="severe tricuspid regurgitation" /> Severe TR</label>
+        <label class="option"><input type="checkbox" data-finding="tricuspid valve not well visualized" /> Not Visualized</label>
+        <label class="option">VTI (cm) <input type="number" class="small-input" step="0.1" min="0" inputmode="decimal" data-text="tricuspid valve VTI {} cm" /></label>
+        <input type="text" class="small-input text-input" placeholder="e.g. VC 0.7 cm" data-text="tricuspid valve: {}" />
+        <div class="note">ASE severe TR: VC &ge; 0.7 cm.</div>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">TR Vmax (m/s)</td>
+      <td class="options">
+        <input type="number" id="trvValue" class="small-input" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 2.6" />
+        <span id="trvResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Mass / Vegetation / Prosthesis</td>
+      <td class="options">
+        <input type="text" class="small-input text-input" placeholder="e.g. mobile echodensity on MV" data-text="{}" />
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Aortic Root (ASE: by age, sex, BSA)</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="aortic root not dilated" /> Normal</label>
+        <label class="option"><input type="checkbox" data-finding="aortic root dilated" /> Dilated</label>
+        <label class="option"><input type="checkbox" data-finding="possible dissection flap" /> Dissection Flap</label>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="IVC">
+  <summary class="section-header">IVC</summary>
+  <table>
+    <tr>
+      <td class="label">IVC Diameter (cm)</td>
+      <td class="options">
+        <label class="option">Max <input type="number" id="ivcMax" class="small-input" step="0.1" min="0" inputmode="decimal" /></label>
+        <label class="option">Min <input type="number" id="ivcMin" class="small-input" step="0.1" min="0" inputmode="decimal" /></label>
+        <label class="option"><input type="checkbox" data-finding="IVC not visualized" /> Not Visualized</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">IVC Assessment</td>
+      <td class="options">
+        <span id="ivcResult" class="calc-result">--</span>
+        <div class="note">Spontaneous breathing: collapse with sniff, RAP per ASE 2010. Ventilated: distensibility index, valid only with passive ventilation (no breathing effort), tidal volume at least 8 mL/kg and sinus rhythm.</div>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="Flow">
+  <summary class="section-header">FLOW &amp; FLUID RESPONSIVENESS</summary>
+  <table>
+    <tr>
+      <td class="label">LVOT VTI (cm, non-ASE)</td>
+      <td class="options">
+        <input type="number" id="vtiValue" class="small-input" step="0.1" min="0" inputmode="decimal" placeholder="e.g. 20" />
+        <span id="vtiResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">SV / CO (optional)</td>
+      <td class="options">
+        <label class="option">LVOT diam (cm) <input type="number" id="lvotDiam" class="small-input" step="0.1" min="0" inputmode="decimal" /></label>
+        <label class="option">HR <input type="number" id="heartRate" class="small-input" step="1" min="0" inputmode="decimal" /></label>
+        <span id="coResult" class="calc-result">--</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">VTI after PLR / Fluid Bolus (cm, non-ASE)</td>
+      <td class="options">
+        <input type="number" id="vtiPost" class="small-input" step="0.1" min="0" inputmode="decimal" />
+        <span id="plrResult" class="calc-result">--</span>
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <details class="exam-section" data-section="Summary">
+  <summary class="section-header">SUMMARY</summary>
+  <table>
+    <tr>
+      <td class="label">Hemodynamic Pattern</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" data-normal="no major structural or hemodynamic abnormality" /> No Major Abnormality</label>
+        <label class="option"><input type="checkbox" data-finding="hyperdynamic, underfilled pattern (hypovolemia or vasodilation)" /> Hypovolemic / Vasodilatory</label>
+        <label class="option"><input type="checkbox" data-finding="LV systolic failure" /> LV Failure</label>
+        <label class="option"><input type="checkbox" data-finding="RV failure / acute cor pulmonale" /> RV Failure</label>
+        <label class="option"><input type="checkbox" data-finding="tamponade physiology" /> Tamponade</label>
+        <label class="option"><input type="checkbox" data-finding="dynamic LVOT obstruction" /> LVOT Obstruction</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Fluid Responsiveness</td>
+      <td class="options">
+        <label class="option"><input type="checkbox" name="fr" data-finding="likely fluid responsive" /> Likely</label>
+        <label class="option"><input type="checkbox" name="fr" data-finding="unlikely to be fluid responsive" /> Unlikely</label>
+        <label class="option"><input type="checkbox" name="fr" data-finding="fluid responsiveness indeterminate" /> Indeterminate</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Comment</td>
+      <td class="options">
+        <input type="text" class="small-input text-input" placeholder="e.g. recommend formal echo" data-text="{}" />
+      </td>
+    </tr>
+  </table>
+  </details>
+
+  <div class="impression">
+    <div class="impression-title">Overall Impression:</div>
+    <textarea id="impression"></textarea>
+    <div id="editedNote" class="note" hidden>
+      Edited by hand, so it no longer updates automatically.<button type="button" onclick="resetImpression()">Regenerate</button>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button type="button" onclick="copyImpression()">Copy Impression</button>
+    <button type="button" onclick="printWorksheet()">Print / Save PDF</button>
+    <button type="button" onclick="clearForm()">Clear</button>
+  </div>
+</div>
+
+<div class="footer-credit">
+  Made by Hemanckur Makker, MD
+</div>
+
+<script>
+  var impressionEdited = false;
+  var lastRAP = null;
+
+  function setResult(el, text, finding) {
+    el.textContent = text;
+    if (finding) {
+      el.setAttribute("data-result", finding);
+    } else {
+      el.removeAttribute("data-result");
+    }
+  }
+
+  function num(id) {
+    return parseFloat(document.getElementById(id).value);
+  }
+
+  function round(x, places) {
+    var f = Math.pow(10, places || 0);
+    return Math.round(x * f) / f;
+  }
+
+  // Keeps mutually exclusive choices consistent after a box is ticked.
+  function enforceExclusivity(box) {
+    if (!box.checked) return;
+    var row = box.closest("td") || box.parentNode;
+    var others = row.querySelectorAll("input[type='checkbox']");
+    for (var i = 0; i < others.length; i++) {
+      var other = others[i];
+      if (other === box) continue;
+      var sameGroup = box.name && other.name === box.name;
+      var normalVsFinding =
+        (box.hasAttribute("data-normal") && other.hasAttribute("data-finding")) ||
+        (box.hasAttribute("data-finding") && other.hasAttribute("data-normal"));
+      if (sameGroup || normalVsFinding) other.checked = false;
+    }
+  }
+
+  // EPSS above 7 mm suggests reduced LV systolic function.
+  function calculateEPSS() {
+    var epss = num("epssValue");
+    var el = document.getElementById("epssResult");
+    if (isNaN(epss)) {
+      setResult(el, "--");
+    } else if (epss > 7) {
+      setResult(el, "Increased", "EPSS " + epss + " mm (above 7 mm, suggests reduced LV systolic function)");
+    } else {
+      setResult(el, "Normal", "EPSS " + epss + " mm");
+    }
+  }
+
+  // ASE 2015: TAPSE below 17 mm suggests RV systolic dysfunction.
+  function calculateTAPSE() {
+    var tapse = num("tapseValue");
+    var el = document.getElementById("tapseResult");
+    if (isNaN(tapse)) {
+      setResult(el, "--");
+    } else if (tapse < 17) {
+      setResult(el, "Reduced", "TAPSE " + tapse + " mm (reduced, below 17 mm)");
+    } else {
+      setResult(el, "Normal", "TAPSE " + tapse + " mm");
+    }
+  }
+
+  // Spontaneous breathing: ASE 2010 (Rudski et al.) RAP from IVC size and sniff collapse.
+  // Mechanical ventilation: distensibility index (max - min) / min above 18% suggests
+  // fluid responsiveness (Barbier et al. 2004); RAP is not estimated.
+  function calculateIVC() {
+    var max = num("ivcMax");
+    var min = num("ivcMin");
+    var spont = document.getElementById("ventSpont").checked;
+    var mech = document.getElementById("ventMech").checked;
+    var el = document.getElementById("ivcResult");
+    lastRAP = null;
+
+    if (isNaN(max) || max <= 0) {
+      setResult(el, "--");
+      return;
+    }
+    var size = "IVC " + max + " cm";
+    var hasMin = !isNaN(min) && min >= 0 && min <= max;
+    if (!hasMin) {
+      setResult(el, size + " (enter min diameter)", size);
+      return;
+    }
+
+    if (mech) {
+      if (min === 0) {
+        setResult(el, size + " (min must be above 0)", size);
+        return;
+      }
+      var di = round((max - min) / min * 100);
+      var diText = di > 18
+        ? "above 18%, suggests fluid responsiveness"
+        : "18% or less, fluid responsiveness less likely";
+      setResult(el, "Distensibility " + di + "%",
+        size + ", distensibility index " + di + "% (" + diText + ")");
+      return;
+    }
+
+    var collapse = round((max - min) / max * 100);
+    var collapseText = size + ", " + collapse + "% collapse";
+    if (!spont) {
+      setResult(el, "Collapse " + collapse + "% (select breathing)", collapseText);
+      return;
+    }
+    var small = max <= 2.1;
+    var high = collapse > 50;
+    var rap;
+    if (small && high) rap = { value: "3", range: "0-5" };
+    else if (small || high) rap = { value: "8", range: "5-10" };
+    else rap = { value: "15", range: "10-20" };
+    lastRAP = parseInt(rap.value, 10);
+    setResult(el, "Collapse " + collapse + "%, RAP " + rap.value + " mmHg (" + rap.range + ")",
+      collapseText + " with sniff, estimated RAP " + rap.value + " mmHg (range " + rap.range + ")");
+  }
+
+  // LVOT VTI below 18 cm suggests low stroke volume.
+  // SV = LVOT area x VTI; CO = SV x HR.
+  // VTI rise of 10% or more after PLR or a fluid challenge suggests fluid responsiveness.
+  function calculateFlow() {
+    var vti = num("vtiValue");
+    var diam = num("lvotDiam");
+    var hr = num("heartRate");
+    var post = num("vtiPost");
+    var vtiEl = document.getElementById("vtiResult");
+    var coEl = document.getElementById("coResult");
+    var plrEl = document.getElementById("plrResult");
+
+    setResult(coEl, "--");
+    setResult(plrEl, "--");
+
+    if (isNaN(vti) || vti <= 0) {
+      setResult(vtiEl, "--");
+      return;
+    }
+    if (vti < 18) {
+      setResult(vtiEl, "Low", "LVOT VTI " + vti + " cm (below 18 cm, suggests low stroke volume)");
+    } else {
+      setResult(vtiEl, "Normal", "LVOT VTI " + vti + " cm");
+    }
+
+    if (!isNaN(diam) && diam > 0) {
+      var sv = Math.PI * Math.pow(diam / 2, 2) * vti;
+      var text = "SV " + round(sv) + " mL";
+      if (!isNaN(hr) && hr > 0) {
+        text += ", CO " + (sv * hr / 1000).toFixed(1) + " L/min";
+      }
+      setResult(coEl, text, "estimated " + text);
+    }
+
+    if (!isNaN(post) && post > 0) {
+      var change = round((post - vti) / vti * 100);
+      var sign = change > 0 ? "+" : "";
+      var verdict = change >= 10
+        ? "10% or more, suggests fluid responsiveness"
+        : "below 10%, fluid responsiveness less likely";
+      setResult(plrEl, sign + change + "%",
+        "VTI " + vti + " to " + post + " cm after PLR / fluid challenge (" + sign + change + "%, " + verdict + ")");
+    }
+  }
+
+  function sex() {
+    if (document.getElementById("sexM").checked) return "M";
+    if (document.getElementById("sexF").checked) return "F";
+    return null;
+  }
+
+  // Runs classify() for the selected sex. With no sex selected, gives the
+  // answer only when the male and female ranges agree.
+  function bySex(classify) {
+    var s = sex();
+    if (s) return classify(s);
+    var m = classify("M"), f = classify("F");
+    return m === f ? m : null;
+  }
+
+  // ASE 2015 (Lang et al.) LVEF: normal 52-72% M, 54-74% F; mildly abnormal
+  // 41-51% M, 41-53% F; moderately abnormal 30-40%; severely abnormal below 30%.
+  function calculateLVEF() {
+    var ef = num("lvefValue");
+    var el = document.getElementById("lvefResult");
+    if (isNaN(ef)) { setResult(el, "--"); return; }
+    var cat = bySex(function(s) {
+      if (ef > (s === "M" ? 72 : 74)) return "hyperdynamic";
+      if (ef >= (s === "M" ? 52 : 54)) return "normal";
+      if (ef >= 41) return "mildly reduced";
+      if (ef >= 30) return "moderately reduced";
+      return "severely reduced";
+    });
+    if (!cat) { setResult(el, "Select sex", "visual LVEF " + ef + "%"); return; }
+    setResult(el, cat.charAt(0).toUpperCase() + cat.slice(1),
+      "visual LVEF " + ef + "% (" + cat + " per ASE)");
+  }
+
+  // ASE 2015 LV end-diastolic diameter: normal 42.0-58.4 mm M, 37.8-52.2 mm F.
+  function calculateLVIDd() {
+    var d = num("lviddValue");
+    var el = document.getElementById("lviddResult");
+    if (isNaN(d)) { setResult(el, "--"); return; }
+    var cat = bySex(function(s) {
+      if (d > (s === "M" ? 58.4 : 52.2)) return "dilated";
+      if (d < (s === "M" ? 42.0 : 37.8)) return "small";
+      return "normal";
+    });
+    if (!cat) { setResult(el, "Select sex", "LVIDd " + d + " mm"); return; }
+    setResult(el, cat.charAt(0).toUpperCase() + cat.slice(1),
+      "LVIDd " + d + " mm" + (cat === "normal" ? "" : " (" + cat + " per ASE)"));
+  }
+
+  // ASE 2015: RV basal diameter above 41 mm is dilated.
+  function calculateRVD() {
+    var d = num("rvdValue");
+    var el = document.getElementById("rvdResult");
+    if (isNaN(d)) setResult(el, "--");
+    else if (d > 41) setResult(el, "Dilated", "RV basal diameter " + d + " mm (dilated, above 41 mm)");
+    else setResult(el, "Normal", "RV basal diameter " + d + " mm");
+  }
+
+  // ASE 2015: RV S' below 9.5 cm/s suggests RV systolic dysfunction.
+  function calculateRVS() {
+    var v = num("rvsValue");
+    var el = document.getElementById("rvsResult");
+    if (isNaN(v)) setResult(el, "--");
+    else if (v < 9.5) setResult(el, "Reduced", "RV S' " + v + " cm/s (reduced, below 9.5 cm/s)");
+    else setResult(el, "Normal", "RV S' " + v + " cm/s");
+  }
+
+  // ASE 2010 (Rudski et al.): RVSP = 4 x TR Vmax squared + RAP.
+  // TR Vmax above 2.8 m/s (RVSP above about 35 mmHg) is abnormal.
+  function calculateRVSP() {
+    var v = num("trvValue");
+    var el = document.getElementById("trvResult");
+    if (isNaN(v) || v <= 0) { setResult(el, "--"); return; }
+    var grad = round(4 * v * v);
+    var high = v > 2.8;
+    var flag = high ? " (above 2.8 m/s, suggests elevated pulmonary pressure)" : "";
+    if (lastRAP === null) {
+      setResult(el, "Gradient " + grad + " mmHg + RAP",
+        "TR Vmax " + v + " m/s" + flag + ", RV-RA gradient " + grad + " mmHg");
+    } else {
+      var rvsp = grad + lastRAP;
+      setResult(el, "RVSP " + rvsp + " mmHg",
+        "TR Vmax " + v + " m/s" + flag + ", estimated RVSP " + rvsp + " mmHg (gradient " + grad + " + RAP " + lastRAP + ")");
+    }
+  }
+
+  // Continuity equation: AVA = LVOT area x LVOT VTI / AV VTI.
+  // ASE 2017 (Baumgartner et al.): AVA above 1.5 cm2 mild, 1.0-1.5 moderate,
+  // below 1.0 severe. Dimensionless index (LVOT VTI / AV VTI) below 0.25 is severe.
+  function calculateAVA() {
+    var avVti = num("avVti");
+    var lvotVti = num("vtiValue");
+    var diam = num("lvotDiam");
+    var el = document.getElementById("avaResult");
+    if (isNaN(avVti) || avVti <= 0) { setResult(el, "AVA: --"); return; }
+    if (isNaN(lvotVti) || lvotVti <= 0) {
+      setResult(el, "AVA: needs LVOT VTI (Flow)");
+      return;
+    }
+    var dvi = round(lvotVti / avVti, 2);
+    var dviText = "dimensionless index " + dvi + (dvi < 0.25 ? " (below 0.25, suggests severe AS)" : "");
+    if (isNaN(diam) || diam <= 0) {
+      setResult(el, "DVI " + dvi + " (AVA needs LVOT diam)", dviText);
+      return;
+    }
+    var ava = round(Math.PI * Math.pow(diam / 2, 2) * lvotVti / avVti, 2);
+    var grade = ava < 1.0 ? "severe AS" : ava <= 1.5 ? "moderate AS" : "mild or no AS";
+    setResult(el, "AVA " + ava + " cm\u00b2, DVI " + dvi,
+      "AVA " + ava + " cm\u00b2 by continuity (" + grade + " per ASE), " + dviText);
+  }
+
+  function textFor(el) {
+    if (el.matches("input[type='checkbox']")) {
+      if (!el.checked) return "";
+      return el.getAttribute("data-finding") || el.getAttribute("data-normal");
+    }
+    if (el.hasAttribute("data-text")) {
+      var value = el.value.trim();
+      return value ? el.getAttribute("data-text").replace("{}", value) : "";
+    }
+    return el.getAttribute("data-result") || "";
+  }
+
+  function buildImpression() {
+    var output = [];
+    var sections = document.querySelectorAll(".exam-section");
+
+    for (var s = 0; s < sections.length; s++) {
+      var section = sections[s];
+      var views = [];
+      var viewBoxes = section.querySelectorAll("input[data-view]:checked");
+      for (var v = 0; v < viewBoxes.length; v++) {
+        views.push(viewBoxes[v].getAttribute("data-view"));
+      }
+
+      var items = [];
+      var els = section.querySelectorAll(
+        "input[data-finding], input[data-normal], input[data-text], .calc-result"
+      );
+      for (var i = 0; i < els.length; i++) {
+        var text = textFor(els[i]);
+        if (text) items.push(text);
+      }
+
+      if (items.length === 0 && views.length === 0) continue;
+
+      var line = section.getAttribute("data-section");
+      if (views.length > 0) {
+        line += " (views: " + views.join(", ") + ")";
+      }
+      line += ": ";
+      if (items.length > 0) {
+        line += items.join("; ") + ".";
+      } else {
+        line += "no findings recorded.";
+      }
+      output.push(line);
+    }
+
+    return output.join("\n");
+  }
+
+  function updateImpression() {
+    calculateLVEF();
+    calculateLVIDd();
+    calculateEPSS();
+    calculateRVD();
+    calculateTAPSE();
+    calculateRVS();
+    calculateIVC();
+    calculateRVSP();
+    calculateFlow();
+    calculateAVA();
+    if (!impressionEdited) {
+      document.getElementById("impression").value = buildImpression();
+    }
+  }
+
+  function resetImpression() {
+    impressionEdited = false;
+    document.getElementById("editedNote").hidden = true;
+    updateImpression();
+  }
+
+  function copyImpression() {
+    var impression = document.getElementById("impression");
+    impression.focus();
+    impression.select();
+
+    function fallback() {
+      try { document.execCommand("copy"); } catch (e) {}
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(impression.value).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function setAllSections(open) {
+    var all = document.querySelectorAll("details.exam-section");
+    for (var i = 0; i < all.length; i++) all[i].open = open;
+  }
+
+  // Collapsed sections would otherwise be left out of the printout.
+  var closedForPrint = [];
+  function openAllSections() {
+    closedForPrint = [];
+    var all = document.querySelectorAll("details.exam-section");
+    for (var i = 0; i < all.length; i++) {
+      if (!all[i].open) {
+        closedForPrint.push(all[i]);
+        all[i].open = true;
+      }
+    }
+  }
+  function restoreSections() {
+    for (var i = 0; i < closedForPrint.length; i++) closedForPrint[i].open = false;
+    closedForPrint = [];
+  }
+  function printWorksheet() {
+    window.print();
+  }
+  window.addEventListener("beforeprint", openAllSections);
+  window.addEventListener("afterprint", restoreSections);
+
+  function clearForm() {
+    var inputs = document.querySelectorAll("input");
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].type === "checkbox") {
+        inputs[i].checked = false;
+      } else {
+        inputs[i].value = "";
+      }
+    }
+    resetImpression();
+  }
+
+  document.addEventListener("change", function(e) {
+    if (e.target.matches("input[type='checkbox']")) {
+      enforceExclusivity(e.target);
+      updateImpression();
+    }
+  });
+
+  document.addEventListener("input", function(e) {
+    if (e.target.id === "impression") {
+      impressionEdited = true;
+      document.getElementById("editedNote").hidden = false;
+    } else if (e.target.matches("input")) {
+      updateImpression();
+    }
+  });
+
+  updateImpression();
+</script>
+
+</body>
+</html>
